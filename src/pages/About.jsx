@@ -4,9 +4,9 @@ import AboutHero from '../components/about/AboutHero.jsx';
 import AboutMission from '../components/about/AboutMission.jsx';
 import AboutValues from '../components/about/AboutValues.jsx';
 import AboutStory from '../components/about/AboutStory.jsx';
-import AboutLeadership from '../components/about/AboutLeadership.jsx';
+import AboutLeadership from '../components/about/AboutLeaderShip.jsx';
 import AboutServiceArea from '../components/about/AboutServiceArea.jsx';
-import AboutGovernance from '../components/about/AboutGovernnance.jsx';
+import AboutGovernance from '../components/about/AboutGovernance.jsx';
 import AboutCTA from '../components/about/AboutCTA.jsx';
 
 export default function About() {
