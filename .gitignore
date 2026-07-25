@@ -36,3 +36,4 @@ coverage/
 *.log
 .vercel
 .netlify
+.env*
