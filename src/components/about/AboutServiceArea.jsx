@@ -1,7 +1,7 @@
 // frontend/src/components/about/AboutServiceArea.jsx
 
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaGlobe } from 'react-icons/fa';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import SectionTitle from '../shared/SectionTitle.jsx';
 
 export default function AboutServiceArea() {
@@ -13,6 +13,12 @@ export default function AboutServiceArea() {
       ease: 'easeInOut'
     }
   };
+
+  // List of cities
+  const cities = [
+    'Ottawa', 'Toronto', 'Vancouver', 'Calgary',
+    'Montreal', 'Halifax', 'Winnipeg', 'Edmonton'
+  ];
 
   return (
     <section className="py-16 md:py-20 bg-white">
@@ -39,7 +45,7 @@ export default function AboutServiceArea() {
               transition={{ delay: 0.2 }}
               viewport={{ once: true }}
             >
-              CYAFSF proudly serves communities across [Service Area]. We work 
+              CYAFSF proudly serves communities across Canada. We work 
               in partnership with local organizations, schools, and community 
               groups to reach youth and families where they are.
             </motion.p>
@@ -55,16 +61,39 @@ export default function AboutServiceArea() {
               inclusive, meeting the diverse needs of the communities we serve.
             </motion.p>
 
+            {/* Cities Grid */}
+            <motion.div 
+              className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              {cities.map((city, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-2 bg-teal-50 rounded-lg px-3 py-2"
+                >
+                  <FaMapMarkerAlt className="text-teal-600 text-xs" />
+                  <span className="text-sm text-gray-700 font-medium">{city}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
             <motion.div 
               className="flex items-center gap-3 text-gray-600 bg-teal-50 p-4 rounded-lg"
               animate={floatAnimation}
             >
               <FaMapMarkerAlt className="text-teal-600 text-2xl" />
-              <span className="font-medium">[Service area details to be confirmed]</span>
+              <span className="font-medium">Serving communities across Canada</span>
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Map */}
+          {/* Right Column - Google Map */}
           <motion.div 
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -72,95 +101,22 @@ export default function AboutServiceArea() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-80 flex items-center justify-center overflow-hidden relative">
-              {/* Animated map pins */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <motion.div 
-                    className="w-32 h-32 bg-teal-200 rounded-full absolute -top-16 -left-16"
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  />
-                  <motion.div 
-                    className="w-24 h-24 bg-coral-200 rounded-full absolute -bottom-12 -right-12"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{
-                      duration: 3.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: 1
-                    }}
-                  />
-                  <motion.div 
-                    className="w-16 h-16 bg-gold-200 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                    animate={{
-                      scale: [1, 1.4, 1],
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: 2
-                    }}
-                  />
-                  
-                  <motion.div animate={floatAnimation}>
-                    <FaMapMarkerAlt className="text-6xl text-teal-600 relative z-10" />
-                  </motion.div>
-                  <motion.div 
-                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-2 bg-teal-600/30 rounded-full"
-                    animate={{
-                      scale: [1, 0.5, 1],
-                      opacity: [0.3, 0.1, 0.3]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  />
-                </div>
-              </div>
-              
-              {/* Animated dots */}
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-2 h-2 bg-teal-400 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`
-                  }}
-                  animate={{
-                    y: [0, -30, 0],
-                    opacity: [0, 1, 0]
-                  }}
-                  transition={{
-                    duration: Math.random() * 5 + 3,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: Math.random() * 3
-                  }}
-                />
-              ))}
-              
-              <div className="relative z-10 text-center text-gray-400 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-lg shadow-lg">
-                <FaGlobe className="text-2xl mx-auto mb-2 text-teal-600" />
-                <p className="font-semibold text-gray-600">Service Area Map</p>
-                <p className="text-sm">[Map or location image here]</p>
-              </div>
+            <div className="w-full h-80 rounded-2xl overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.678901234567!2d-75.6769706!3d45.3512294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce08831a150dfb%3A0x6c6310ce18432438!2s123%20Support%20St%2C%20Ottawa%2C%20ON%20K1A%200B1!5e0!3m2!1sen!2sca!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="CYAFSF Location Map"
+                className="rounded-xl"
+              />
             </div>
+            <p className="text-xs text-ink/40 text-center mt-2">
+              123 Support Street, Ottawa, ON K1A 0B1
+            </p>
           </motion.div>
         </div>
       </div>
