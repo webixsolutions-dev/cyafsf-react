@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body text-ink;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-navy font-extrabold leading-tight;
+  }
+}
+
+@layer components {
+  /* Small set of shared classes so components stay readable instead of
+     repeating long utility strings for the same recurring shapes. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-display font-bold
+           rounded-full px-6 py-3 border-2 border-transparent transition
+           focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-gold focus-visible:outline-offset-2;
+  }
+  .btn-primary {
+    @apply bg-coral text-white hover:bg-coral-dark hover:-translate-y-0.5 hover:shadow-lg;
+  }
+  .btn-secondary {
+    @apply bg-transparent text-navy border-navy hover:bg-navy hover:text-white hover:-translate-y-0.5;
+  }
+  .container {
+    @apply max-w-container mx-auto px-6;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-display font-bold text-xs tracking-[0.14em] uppercase text-coral mb-3;
+  }
+  .card-tag {
+    @apply text-[0.72rem] font-bold tracking-wider uppercase text-teal;
+  }
+}
+
+html{
+  overflow-x: hidden;
+}
