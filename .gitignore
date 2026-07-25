@@ -1,39 +1,163 @@
-# Dependencies
+# ========================================
+# DEPENDENCIES
+# ========================================
 node_modules/
 .pnp/
 .pnp.js
+.yarn/
+.pnpm-store/
+.yarn-integrity
 
-# Build outputs
+# ========================================
+# BUILD OUTPUTS
+# ========================================
 dist/
 build/
-.out/
+out/
 .next/
+.nuxt/
+.nitro/
+.cache/
+.parcel-cache/
+.eslintcache
+*.tsbuildinfo
 
-# Environment files
+# ========================================
+# ENVIRONMENT FILES (SENSITIVE!)
+# ========================================
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+.env.staging
+.env.dev
+*.env
 
-# Logs
+# ========================================
+# LOGS
+# ========================================
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+lerna-debug.log*
 
-# Editor
+# ========================================
+# TESTING & COVERAGE
+# ========================================
+coverage/
+.nyc_output/
+test-results/
+__tests__/coverage/
+.jest/
+*.test-output
+
+# ========================================
+# DATABASE FILES (Local DB)
+# ========================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.mongodb
+*.dump
+
+# ========================================
+# UPLOADS / USER FILES
+# ========================================
+uploads/
+media/
+files/
+temp/
+tmp/
+*.tmp
+*.temp
+
+# ========================================
+# SECURITY / CERTIFICATES (SENSITIVE!)
+# ========================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.p8
+*.der
+secrets/
+credentials/
+keys/
+certificates/
+*.secret
+
+# ========================================
+# OS FILES
+# ========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+.AppleDouble
+.LSOverride
+
+# ========================================
+# IDE / EDITOR
+# ========================================
 .vscode/
 .idea/
 *.swp
 *.swo
-.DS_Store
+*.sublime-project
+*.sublime-workspace
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+.vscode-test/
 
-# Testing
-coverage/
+# ========================================
+# PACKAGE MANAGER LOCKS (Choose ONE)
+# ========================================
+# Agar npm use kar rahe ho:
+package-lock.json
+# Agar yarn use kar rahe ho:
+# yarn.lock
+# Agar pnpm use kar rahe ho:
+# pnpm-lock.yaml
 
-# Misc
-*.log
+# ========================================
+# MISC
+# ========================================
 .vercel
 .netlify
-.env*
+.heroku
+.elasticbeanstalk
+.serverless/
+.serverless_plugins/
+.terraform/
+*.tgz
+*.gz
+*.rar
+*.zip
+
+# ========================================
+# DEBUGGING
+# ========================================
+.DS_Store
+*.pid
+*.seed
+*.pid.lock
+.directory
+
+# ========================================
+# TYPESCRIPT (agar TS use kar rahe ho)
+# ========================================
+*.tsbuildinfo
+*.js.map
+*.d.ts.map
+*.d.ts
+!*.d.ts
+!*.d.ts.map
