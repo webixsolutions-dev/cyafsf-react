@@ -1,15 +1,77 @@
 // src/components/news/NewsCTA.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, Heart, MessageCircle, Sparkles,
   Calendar, Users, Award, ChevronRight,
-  Mail, Phone, MapPin, Clock, Shield
+  Mail, Phone, MapPin, Clock, Shield, CheckCircle, AlertCircle
 } from 'lucide-react';
 import AnimatedSection from '../shared/AnimatedCard';
 
 const NewsCTA = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [message, setMessage] = useState('');
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    
+    // Validate email
+    if (!email) {
+      setStatus('error');
+      setMessage('Please enter your email address');
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setStatus('error');
+      setMessage('Please enter a valid email address');
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      // Simulate API call - Replace with actual API endpoint
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      // Success
+      setStatus('success');
+      setMessage('Thank you for subscribing! Check your email for confirmation.');
+      setEmail('');
+      
+      // Reset after 5 seconds
+      setTimeout(() => {
+        setStatus('idle');
+        setMessage('');
+      }, 5000);
+      
+    } catch (error) {
+      setStatus('error');
+      setMessage('Something went wrong. Please try again.');
+      
+      setTimeout(() => {
+        setStatus('idle');
+        setMessage('');
+      }, 5000);
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (status === 'error' || status === 'success') {
+      setStatus('idle');
+      setMessage('');
+    }
+  };
+
   return (
     <section className="relative py-20 bg-gradient-to-br from-navy via-navy/95 to-teal/90 text-white overflow-hidden">
       {/* Animated Background */}
@@ -66,28 +128,76 @@ const NewsCTA = () => {
               events, and community impact stories.
             </p>
 
-            {/* Newsletter Subscription */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-8">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 
-                         text-white placeholder-white/50 focus:border-gold focus:ring-2 
-                         focus:ring-gold/20 outline-none transition-all duration-300"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-navy font-semibold 
-                           rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
-              >
-                <Sparkles className="w-5 h-5" />
-                Subscribe Now
-              </motion.button>
-            </div>
-            <p className="text-white/50 text-xs mt-2">
-              No spam. Unsubscribe anytime.
-            </p>
+            {/* Newsletter Subscription - Working */}
+            <form onSubmit={handleSubscribe} className="mt-8">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-1 relative">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter your email"
+                    disabled={status === 'loading' || status === 'success'}
+                    className={`w-full px-4 py-3 rounded-lg bg-white/10 border 
+                              text-white placeholder-white/50 focus:border-gold focus:ring-2 
+                              focus:ring-gold/20 outline-none transition-all duration-300
+                              ${status === 'error' ? 'border-red-400 ring-2 ring-red-400/30' : 'border-white/20'}
+                              ${status === 'success' ? 'border-green-400 ring-2 ring-green-400/30' : ''}
+                              ${(status === 'loading' || status === 'success') ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  whileHover={status === 'idle' ? { scale: 1.05 } : {}}
+                  whileTap={status === 'idle' ? { scale: 0.95 } : {}}
+                  disabled={status === 'loading' || status === 'success'}
+                  className={`inline-flex items-center gap-2 px-6 py-3 bg-gold text-navy font-semibold 
+                             rounded-lg transition-all duration-300 shadow-lg shadow-gold/30
+                             ${(status === 'loading' || status === 'success') 
+                               ? 'opacity-70 cursor-not-allowed' 
+                               : 'hover:bg-gold/90'}`}
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-navy/30 border-t-navy rounded-full animate-spin" />
+                      Subscribing...
+                    </>
+                  ) : status === 'success' ? (
+                    <>
+                      <CheckCircle className="w-5 h-5" />
+                      Subscribed!
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-5 h-5" />
+                      Subscribe Now
+                    </>
+                  )}
+                </motion.button>
+              </div>
+              
+              {/* Status Messages */}
+              {message && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-3 text-sm flex items-center gap-2 ${
+                    status === 'success' ? 'text-green-400' : 'text-red-400'
+                  }`}
+                >
+                  {status === 'success' ? (
+                    <CheckCircle className="w-4 h-4" />
+                  ) : (
+                    <AlertCircle className="w-4 h-4" />
+                  )}
+                  {message}
+                </motion.div>
+              )}
+              
+              <p className="text-white/50 text-xs mt-2">
+                No spam. Unsubscribe anytime.
+              </p>
+            </form>
 
             {/* Quick Links */}
             <div className="flex flex-wrap gap-6 mt-6">
@@ -178,19 +288,6 @@ const NewsCTA = () => {
                   </div>
                 </div>
               </div>
-
-              <Link to="/news">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-6 w-full py-3 bg-white/10 text-white font-semibold rounded-lg 
-                           hover:bg-white/20 transition-all duration-300 border border-white/20
-                           flex items-center justify-center gap-2"
-                >
-                  Read All Stories
-                  <ChevronRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
             </div>
           </AnimatedSection>
         </div>

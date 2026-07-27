@@ -1,8 +1,6 @@
 // frontend/src/components/programs/ProgramsHero.jsx
 
 import { motion } from 'framer-motion';
-import { FaSearch } from 'react-icons/fa';
-import AnimatedCard from '../shared/AnimatedCard.jsx';
 
 export default function ProgramsHero() {
   const containerVariants = {
@@ -135,28 +133,6 @@ export default function ProgramsHero() {
             communities. Each program is tailored to meet specific needs 
             and create lasting impact.
           </p>
-        </motion.div>
-
-        {/* Search Bar */}
-        <motion.div 
-          variants={itemVariants}
-          className="mt-8 max-w-2xl"
-        >
-          <div className="relative flex items-center">
-            <FaSearch className="absolute left-4 text-white/40 z-10" />
-            <motion.input 
-              type="text"
-              placeholder="Search programs..."
-              className="w-full px-6 py-4 pl-12 pr-36 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-teal-400 transition-all"
-              whileFocus={{ scale: 1.02, boxShadow: '0 0 30px rgba(45,212,191,0.2)' }}
-            />
-            <motion.button 
-              className="absolute right-1.5 px-6 py-2.5 bg-coral text-white font-semibold rounded-lg whitespace-nowrap hover:bg-coral/90 transition-colors shadow-lg"
-            
-            >
-              Search
-            </motion.button>
-          </div>
         </motion.div>
       </div>
     </motion.section>

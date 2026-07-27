@@ -69,7 +69,7 @@ const DonateCTA = () => {
 
             {/* Donation Options */}
             <div className="flex flex-wrap gap-4 mt-8">
-              <Link to="#donate-options">
+              <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -198,7 +198,7 @@ const DonateCTA = () => {
                 </div>
               </div>
 
-              <Link to="#donate-options">
+              <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

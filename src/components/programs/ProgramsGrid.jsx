@@ -19,6 +19,13 @@ export default function ProgramsGrid({ programs }) {
   return (
     <section className="py-12 md:py-16 bg-gray-50">
       <div className="container">
+        {/* Results Count */}
+        <div className="flex justify-between items-center mb-6">
+          <p className="text-sm text-gray-500">
+            {programs.length} program{programs.length !== 1 ? 's' : ''} found
+          </p>
+        </div>
+
         <motion.div 
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}

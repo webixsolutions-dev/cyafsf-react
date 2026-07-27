@@ -107,31 +107,6 @@ const NewsHero = () => {
                 </motion.div>
               ))}
             </motion.div>
-
-            {/* Subscribe CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-8 flex flex-col sm:flex-row gap-3"
-            >
-              <input
-                type="email"
-                placeholder="Subscribe to newsletter"
-                className="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 
-                         text-white placeholder-white/50 focus:border-gold focus:ring-2 
-                         focus:ring-gold/20 outline-none transition-all duration-300"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gold text-navy font-semibold 
-                           rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
-              >
-                <Sparkles className="w-4 h-4" />
-                Subscribe
-              </motion.button>
-            </motion.div>
           </motion.div>
 
           {/* Right Content - Animated Cards */}

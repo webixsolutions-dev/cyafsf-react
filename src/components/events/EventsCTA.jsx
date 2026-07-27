@@ -61,35 +61,12 @@ const EventsCTA = () => {
             </h2>
             
             <p className="text-white/80 text-lg mt-4">
-              Subscribe to our newsletter and be the first to know about new events, 
+              Follow us on social media to stay updated about our events, 
               programs, and opportunities in your community.
             </p>
 
-            {/* Email Subscription */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-8">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 
-                         text-white placeholder-white/50 focus:border-gold focus:ring-2 
-                         focus:ring-gold/20 outline-none transition-all duration-300"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-navy font-semibold 
-                           rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
-              >
-                <Sparkles className="w-5 h-5" />
-                Subscribe Now
-              </motion.button>
-            </div>
-            <p className="text-white/50 text-xs mt-2">
-              No spam. Unsubscribe anytime.
-            </p>
-
             {/* Quick Links */}
-            <div className="flex flex-wrap gap-6 mt-6">
+            <div className="flex flex-wrap gap-6 mt-8">
               <Link to="/contact" className="text-white/70 hover:text-gold transition-colors text-sm flex items-center gap-1">
                 <MessageCircle className="w-4 h-4" />
                 Contact Us
@@ -147,7 +124,7 @@ const EventsCTA = () => {
                   <div>
                     <p className="text-white font-semibold text-sm">Summer Youth Leadership Workshop</p>
                     <p className="text-white/60 text-xs">Community Center, Ottawa</p>
-                    <Link to="/events/1" className="text-gold text-xs font-medium hover:underline inline-flex items-center gap-1 mt-1">
+                    <Link to="/events" className="text-gold text-xs font-medium hover:underline inline-flex items-center gap-1 mt-1">
                       Learn More
                       <ArrowRight className="w-3 h-3" />
                     </Link>
@@ -155,18 +132,7 @@ const EventsCTA = () => {
                 </div>
               </motion.div>
 
-              <Link to="/events">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-6 w-full py-3 bg-teal text-white font-semibold rounded-lg 
-                           hover:bg-teal/90 transition-all duration-300 shadow-lg shadow-teal/30
-                           flex items-center justify-center gap-2"
-                >
-                  View All Events
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
+         
             </div>
           </AnimatedSection>
         </div>

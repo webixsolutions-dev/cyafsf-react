@@ -85,7 +85,7 @@ export default function SiteFooter() {
             </li>
             <li className="flex items-center gap-3">
               <Clock className="w-4 h-4 text-teal flex-shrink-0" />
-              <span className="text-[#8FA6AB] text-xs">Mon-Fri 9:00 AM - 5:00 PM EST</span>
+              <span className="text-[#8FA6AB] text-xs">Mon-Fri 9:00 AM - 5:00 PM </span>
             </li>
           </ul>
         </div>

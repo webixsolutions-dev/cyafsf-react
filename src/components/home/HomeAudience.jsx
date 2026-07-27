@@ -9,14 +9,14 @@ import AnimatedCard from '../shared/AnimatedCard.jsx';
 export default function HomeAudience() {
   const audiences = [
     {
-      to: '/youth',
+      to: '/programs',
       icon: <FaChild className="text-3xl text-teal-600" />,
       iconBg: 'bg-teal-600/10 group-hover:bg-teal-600/20',
       title: "I'm a Young Person",
       description: 'Build skills, confidence, and connections for your future.',
       color: 'from-teal-50 to-teal-100/50 hover:from-teal-100 hover:to-teal-200/50',
       borderColor: 'hover:border-teal-400',
-      linkText: 'Get started'
+      linkText: 'Explore Programs'
     },
     {
       to: '/family-support',
@@ -26,7 +26,7 @@ export default function HomeAudience() {
       description: 'Find support, resources, and community for your family.',
       color: 'from-navy/5 to-navy/10 hover:from-navy/10 hover:to-navy/20',
       borderColor: 'hover:border-navy/30',
-      linkText: 'Explore support'
+      linkText: 'Find Support'
     },
     {
       to: '/get-involved',
@@ -36,7 +36,7 @@ export default function HomeAudience() {
       description: 'Volunteer, partner, or donate to make a difference.',
       color: 'from-coral/10 to-coral/20 hover:from-coral/20 hover:to-coral/30',
       borderColor: 'hover:border-coral/40',
-      linkText: 'Get involved'
+      linkText: 'Get Involved'
     }
   ];
 

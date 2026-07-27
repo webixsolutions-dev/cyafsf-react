@@ -88,7 +88,8 @@ const EventsGrid = ({ filteredEvents }) => {
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.3 }}
                   className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl 
-                             transition-all duration-300 ${view === 'list' ? 'flex flex-col md:flex-row' : ''}`}
+                             transition-all duration-300 flex flex-col h-full
+                             ${view === 'list' ? 'flex-col md:flex-row' : ''}`}
                 >
                   {/* Image */}
                   <div className={`relative ${view === 'list' ? 'md:w-72 md:flex-shrink-0' : 'h-48'}`}>
@@ -114,48 +115,31 @@ const EventsGrid = ({ filteredEvents }) => {
                   </div>
 
                   {/* Content */}
-                  <div className={`p-6 ${view === 'list' ? 'flex-1' : ''}`}>
-                    <h3 className="text-xl font-bold text-navy hover:text-teal transition-colors">
+                  <div className={`p-6 flex flex-col flex-1 ${view === 'list' ? 'flex-1' : ''}`}>
+                    <h3 className="text-xl font-bold text-navy hover:text-teal transition-colors line-clamp-2">
                       {event.title}
                     </h3>
-                    <p className="text-ink/70 text-sm mt-2 line-clamp-2">{event.description}</p>
+                    <p className="text-ink/70 text-sm mt-2 line-clamp-2 flex-1">
+                      {event.description}
+                    </p>
                     
                     <div className="space-y-2 mt-4 text-sm">
                       <div className="flex items-center gap-2 text-ink/60">
-                        <Calendar className="w-4 h-4 text-teal" />
+                        <Calendar className="w-4 h-4 text-teal flex-shrink-0" />
                         <span>{event.date}</span>
                       </div>
                       <div className="flex items-center gap-2 text-ink/60">
-                        <Clock className="w-4 h-4 text-teal" />
+                        <Clock className="w-4 h-4 text-teal flex-shrink-0" />
                         <span>{event.time}</span>
                       </div>
                       <div className="flex items-center gap-2 text-ink/60">
-                        <MapPin className="w-4 h-4 text-teal" />
+                        <MapPin className="w-4 h-4 text-teal flex-shrink-0" />
                         <span>{event.location}</span>
                       </div>
                       <div className="flex items-center gap-2 text-ink/60">
-                        <Users className="w-4 h-4 text-teal" />
+                        <Users className="w-4 h-4 text-teal flex-shrink-0" />
                         <span>{event.registered} / {event.spots} registered</span>
                       </div>
-                    </div>
-
-                    <div className="flex items-center gap-3 mt-4">
-                      <Link to={`/events/${event.id}`}>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-coral text-white 
-                                   text-sm font-medium rounded-lg hover:bg-coral/90 transition-all 
-                                   duration-300 shadow-lg shadow-coral/30"
-                        >
-                          Register Now
-                        </motion.button>
-                      </Link>
-                      <Link to={`/events/${event.id}`} className="text-teal font-medium text-sm 
-                                 hover:gap-1 transition-all inline-flex items-center gap-0">
-                        Details
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
                     </div>
                   </div>
                 </motion.div>

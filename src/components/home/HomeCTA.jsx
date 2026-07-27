@@ -7,15 +7,15 @@ import { FaHandsHelping, FaHands, FaDonate, FaArrowRight } from 'react-icons/fa'
 export default function HomeCTA() {
   const actions = [
     {
-      to: '/volunteer',
+      to: '/donate',
       icon: <FaHandsHelping className="text-3xl text-white" />,
       title: 'Volunteer',
-      description: 'Share your time and skills to make a meaningful impact in young lives.',
+      description: 'Share your time and skills to make a meaningful impact.',
       buttonText: 'Learn More',
       buttonColor: 'bg-white text-teal-700 hover:bg-teal-50'
     },
     {
-      to: '/partner',
+      to: '/donate',
       icon: <FaHands className="text-3xl text-white" />,
       title: 'Partner',
       description: 'Collaborate with us to expand our reach and create lasting change.',
@@ -26,7 +26,7 @@ export default function HomeCTA() {
       to: '/donate',
       icon: <FaDonate className="text-3xl text-white" />,
       title: 'Donate',
-      description: 'Your financial support helps us provide essential programs and services.',
+      description: 'Your financial support helps us provide essential programs.',
       buttonText: 'Donate Now',
       buttonColor: 'bg-gold text-navy hover:bg-yellow-400'
     }

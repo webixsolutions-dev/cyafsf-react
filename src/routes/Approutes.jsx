@@ -13,6 +13,9 @@ const GetInvolved = lazy(() => import('../pages/GetInvolved'));
 const News = lazy(() => import('../pages/News'));
 const Contact = lazy(() => import('../pages/Contact'));
 const Donate = lazy(() => import('../pages/Donate'));
+const Privacy = lazy(() => import('../pages/Privacy'));
+const Terms = lazy(() => import('../pages/Termsconditions'));
+const AccessibilityPage = lazy(() => import('../pages/Accessability'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
 // Loading component
@@ -20,7 +23,7 @@ function LoadingSpinner() {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="text-center">
-        <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-teal-600 border-t-transparent"></div>
         <p className="mt-4 text-gray-600 text-lg">Loading...</p>
       </div>
     </div>
@@ -31,6 +34,7 @@ export default function AppRoutes() {
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <Routes>
+        {/* Main Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/programs" element={<Programs />} />
@@ -41,6 +45,13 @@ export default function AppRoutes() {
         <Route path="/news" element={<News />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
+        
+        {/* Legal Pages */}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/accessibility" element={<AccessibilityPage />} />
+        
+        {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

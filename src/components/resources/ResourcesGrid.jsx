@@ -72,42 +72,37 @@ const ResourcesGrid = ({ filteredResources }) => {
                     whileHover={{ y: -8 }}
                     transition={{ duration: 0.3 }}
                     className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl 
-                               transition-all duration-300 border-2 border-transparent ${colors.hover}`}
+                               transition-all duration-300 border-2 border-transparent ${colors.hover}
+                               flex flex-col h-full`}
                   >
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-1">
                       <div className="flex items-start justify-between">
                         <div className={`w-12 h-12 ${colors.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
                           <IconComponent className={`w-6 h-6 ${colors.text}`} />
                         </div>
-                        <span className={`text-xs font-medium ${colors.text} ${colors.bg} px-3 py-1 rounded-full`}>
+                        <span className={`text-xs font-medium ${colors.text} ${colors.bg} px-3 py-1 rounded-full flex-shrink-0`}>
                           {resource.type}
                         </span>
                       </div>
                       
-                      <h3 className="text-xl font-bold text-navy mt-4 hover:text-teal transition-colors">
+                      <h3 className="text-xl font-bold text-navy mt-4 hover:text-teal transition-colors line-clamp-2">
                         {resource.title}
                       </h3>
-                      <p className="text-ink/70 text-sm mt-2 line-clamp-2">{resource.description}</p>
+                      
+                      <p className="text-ink/70 text-sm mt-2 line-clamp-3 flex-1">
+                        {resource.description}
+                      </p>
                       
                       <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
                         <span className="text-xs font-medium text-ink/50 bg-gray-100 px-3 py-1 rounded-full">
                           {resource.category}
                         </span>
-                        <span className="text-xs font-medium text-ink/50 flex items-center gap-1">
-                          <Download className="w-3 h-3" />
-                          {resource.downloads}
-                        </span>
-                        {resource.download && (
-                          <span className="text-xs font-medium text-teal bg-teal/10 px-3 py-1 rounded-full flex items-center gap-1">
-                            <Download className="w-3 h-3" />
-                            Download
-                          </span>
-                        )}
                       </div>
 
-                      <Link to={`/resources/${resource.id}`} className="inline-flex items-center gap-2 mt-4 text-teal font-medium hover:gap-3 transition-all">
+                      {/* Redirecting to /contact */}
+                      <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-teal font-medium hover:gap-3 transition-all group">
                         <span>Access Resource</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </motion.div>

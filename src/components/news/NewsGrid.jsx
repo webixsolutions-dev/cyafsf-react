@@ -175,17 +175,6 @@ const NewsGrid = () => {
                     <Clock className="w-4 h-4" />
                     {featuredArticle.readTime}
                   </span>
-                  <Link to={`/news/${featuredArticle.id}`}>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center gap-2 px-6 py-2 bg-gold text-navy font-semibold 
-                                 rounded-lg hover:bg-gold/90 transition-all duration-300"
-                    >
-                      Read Full Story
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.button>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -281,15 +270,11 @@ const NewsGrid = () => {
                       {article.title}
                     </h3>
                     <p className="text-ink/70 text-sm mt-2 line-clamp-2">{article.excerpt}</p>
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+                    <div className="flex items-center mt-4 pt-4 border-t border-gray-100">
                       <span className="text-xs text-ink/50 flex items-center gap-1">
                         <User className="w-3 h-3" />
                         {article.author}
                       </span>
-                      <Link to={`/news/${article.id}`} className="inline-flex items-center gap-1 text-teal font-medium text-sm hover:gap-2 transition-all">
-                        Read More
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
                     </div>
                   </div>
                 </motion.div>

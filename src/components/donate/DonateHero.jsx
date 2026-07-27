@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
+import {
   Heart, DollarSign, Shield, ArrowRight,
   Award, Users, TrendingUp, Gift
 } from 'lucide-react';
@@ -76,7 +76,7 @@ const DonateHero = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-white/80 text-lg mt-4 max-w-xl"
             >
-              Support youth, families, and communities across Canada with a 
+              Support youth, families, and communities across Canada with a
               donation that creates lasting change.
             </motion.p>
 
@@ -101,14 +101,14 @@ const DonateHero = () => {
               </div>
             </motion.div>
 
-            {/* CTA Button */}
+            {/* CTA Button - Redirecting to /contact */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
               className="mt-8"
             >
-              <Link to="#donate-options">
+              <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

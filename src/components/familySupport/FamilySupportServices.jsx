@@ -105,10 +105,34 @@ const FamilySupportServices = () => {
   };
 
   const colorClasses = {
-    coral: { text: 'text-coral', iconBg: 'bg-coral/20', overlay: 'from-coral/70 to-coral/30' },
-    teal: { text: 'text-teal', iconBg: 'bg-teal/20', overlay: 'from-teal/70 to-teal/30' },
-    gold: { text: 'text-gold', iconBg: 'bg-gold/20', overlay: 'from-gold/70 to-gold/30' },
-    navy: { text: 'text-navy', iconBg: 'bg-navy/20', overlay: 'from-navy/70 to-navy/30' },
+    coral: { 
+      text: 'text-coral', 
+      iconBg: 'bg-coral/20', 
+      overlay: 'from-coral/80 to-coral/50',
+      hoverOverlay: 'hover:from-coral/60 hover:to-coral/30',
+      border: 'border-coral/30'
+    },
+    teal: { 
+      text: 'text-teal', 
+      iconBg: 'bg-teal/20', 
+      overlay: 'from-teal/80 to-teal/50',
+      hoverOverlay: 'hover:from-teal/60 hover:to-teal/30',
+      border: 'border-teal/30'
+    },
+    gold: { 
+      text: 'text-gold', 
+      iconBg: 'bg-gold/20', 
+      overlay: 'from-gold/80 to-gold/50',
+      hoverOverlay: 'hover:from-gold/60 hover:to-gold/30',
+      border: 'border-gold/30'
+    },
+    navy: { 
+      text: 'text-navy', 
+      iconBg: 'bg-navy/20', 
+      overlay: 'from-navy/80 to-navy/50',
+      hoverOverlay: 'hover:from-navy/60 hover:to-navy/30',
+      border: 'border-navy/30'
+    },
   };
 
   return (
@@ -129,35 +153,36 @@ const FamilySupportServices = () => {
             return (
               <AnimatedSection key={service.id} delay={index * 0.1}>
                 <motion.div
-                  className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                  className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-white/30"
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.3 }}
                   onClick={() => handleServiceClick(service.id)}
                 >
-                  {/* Background Image with Overlay */}
+                  {/* Background Image with Better Overlay */}
                   <div className="absolute inset-0 z-0">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-b ${colors.overlay} 
-                                  group-hover:opacity-0 transition-opacity duration-500`} />
-                    <div className="absolute inset-0 bg-white/90 group-hover:bg-white/20 transition-all duration-500" />
+                    {/* Dark Overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+                    {/* Color Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-b ${colors.overlay} opacity-90 group-hover:opacity-75 transition-opacity duration-500`} />
                   </div>
 
                   {/* Content */}
-                  <div className="relative z-10 p-6">
+                  <div className="relative z-10 p-6 min-h-[280px] flex flex-col">
                     <div className="flex items-start gap-4">
-                      <div className={`w-12 h-12 ${colors.iconBg} rounded-xl flex items-center justify-center 
-                                    flex-shrink-0 group-hover:bg-white/30 group-hover:backdrop-blur-sm transition-all duration-500`}>
-                        <service.icon className={`w-6 h-6 ${colors.text} group-hover:text-white transition-colors duration-500`} />
+                      <div className={`w-12 h-12 ${colors.iconBg} backdrop-blur-sm rounded-xl flex items-center justify-center 
+                                    flex-shrink-0 group-hover:scale-110 transition-all duration-500`}>
+                        <service.icon className={`w-6 h-6 ${colors.text} drop-shadow-lg`} />
                       </div>
-                      <h3 className="text-xl font-bold text-navy group-hover:text-white transition-colors duration-500">
+                      <h3 className="text-xl font-bold text-white drop-shadow-lg">
                         {service.title}
                       </h3>
                     </div>
-                    <p className="text-ink/70 group-hover:text-white/90 text-sm mt-3 transition-colors duration-500">
+                    <p className="text-white/90 text-sm mt-3 drop-shadow-md leading-relaxed">
                       {service.description}
                     </p>
 
@@ -170,16 +195,16 @@ const FamilySupportServices = () => {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="mt-4 pt-4 border-t border-gray-200 group-hover:border-white/30 space-y-2 transition-colors duration-500">
+                          <div className="mt-4 pt-4 border-t border-white/20 space-y-2">
                             {service.details.map((detail, i) => (
                               <motion.div
                                 key={i}
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.1 }}
-                                className="flex items-start gap-2 text-sm text-ink/70 group-hover:text-white/80"
+                                className="flex items-start gap-2 text-sm text-white/90 drop-shadow-md"
                               >
-                                <CheckCircle className={`w-4 h-4 ${colors.text} group-hover:text-white mt-0.5 flex-shrink-0 transition-colors duration-500`} />
+                                <CheckCircle className={`w-4 h-4 ${colors.text} mt-0.5 flex-shrink-0`} />
                                 <span>{detail}</span>
                               </motion.div>
                             ))}
@@ -187,10 +212,10 @@ const FamilySupportServices = () => {
                               <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className={`mt-3 w-full py-2 px-4 rounded-lg font-medium text-center
-                                          ${colors.text} group-hover:text-white
-                                          ${colors.iconBg} group-hover:bg-white/20
-                                          transition-all duration-500 flex items-center justify-center gap-2`}
+                                className={`mt-3 w-full py-2.5 px-4 rounded-lg font-medium text-center
+                                          bg-white/20 backdrop-blur-sm text-white
+                                          hover:bg-white/30 transition-all duration-500 
+                                          flex items-center justify-center gap-2 border border-white/20`}
                               >
                                 Learn More <ArrowRight className="w-4 h-4" />
                               </motion.button>
@@ -203,9 +228,9 @@ const FamilySupportServices = () => {
                     <motion.div
                       animate={{ rotate: isActive ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className="mt-3 text-center"
+                      className="mt-auto pt-3 text-center"
                     >
-                      <ChevronRight className={`w-5 h-5 ${colors.text} group-hover:text-white mx-auto transition-all duration-500`} />
+                      <ChevronRight className={`w-5 h-5 ${colors.text} mx-auto transition-all duration-500 drop-shadow-lg`} />
                     </motion.div>
                   </div>
                 </motion.div>

@@ -1,7 +1,7 @@
 // src/components/resources/ResourcesHero.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, FileText, Video, Link as LinkIcon, Download, Search } from 'lucide-react';
+import { BookOpen, FileText, Video, Link as LinkIcon, Download } from 'lucide-react';
 
 const ResourcesHero = () => {
   return (
@@ -75,27 +75,7 @@ const ResourcesHero = () => {
               Practical guides, toolkits, and resources to support youth, families, and communities.
             </motion.p>
 
-            {/* Search Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-8"
-            >
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
-                <input
-                  type="text"
-                  placeholder="Search resources..."
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm 
-                           border border-white/20 text-white placeholder-white/50
-                           focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none 
-                           transition-all duration-300"
-                />
-              </div>
-            </motion.div>
-
-            {/* Resource Types */}
+            {/* Resource Types - Static Display */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,16 +89,15 @@ const ResourcesHero = () => {
                 { icon: LinkIcon, label: 'Links' },
                 { icon: Download, label: 'Downloads' },
               ].map((item, index) => (
-                <motion.span
+                <span
                   key={index}
-                  whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.2)' }}
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full 
                            bg-white/10 backdrop-blur-sm border border-white/10 text-sm
-                           transition-all duration-300 cursor-pointer"
+                           text-white/70"
                 >
                   <item.icon className="w-4 h-4 text-gold" />
                   {item.label}
-                </motion.span>
+                </span>
               ))}
             </motion.div>
           </motion.div>

@@ -140,32 +140,34 @@ export default function AboutHero({ onScrollToMission }) {
             of belonging and move toward a hopeful future.
           </p>
           <div className="flex flex-wrap gap-4 mt-8">
-            <motion.button
-              onClick={onScrollToMission}
-              className="group inline-flex items-center gap-2 px-8 py-3 bg-coral text-white font-semibold rounded-lg shadow-lg hover:shadow-xl"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Learn More
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-8 py-3 bg-coral text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer"
               >
-                <FaArrowRight />
-              </motion.span>
-            </motion.button>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-3 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+                Learn More
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: 'easeInOut'
+                  }}
+                >
+                  <FaArrowRight />
+                </motion.span>
+              </motion.button>
+            </Link>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-8 py-3 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
               >
                 Get in Touch
-              </Link>
-            </motion.div>
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

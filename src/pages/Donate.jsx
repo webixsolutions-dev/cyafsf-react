@@ -9,7 +9,7 @@ export default function Donate() {
   return (
     <>
       <DonateHero />
-      <DonateOptions />
+      {/* <DonateOptions /> */}
       <DonateImpact />
       <DonateCTA />
     </>

@@ -70,7 +70,7 @@ export default function ProgramsFilter({ categories, onFilterChange, activeCateg
     <AnimatedCard
       variant="default"
       className="py-6 bg-white border-b border-gray-100 shadow-sm"
-      id="programs-filter"  // Added ID for scrolling
+      id="programs-filter"
     >
       <div className="container">
         <div className="flex flex-wrap items-center justify-between gap-4">

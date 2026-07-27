@@ -11,21 +11,24 @@ export default function HomePrograms() {
   const programs = [
     {
       title: 'Youth Mentorship Program',
-      description: 'One-on-one mentoring that builds confidence, develops skills, and creates lasting connections for young people aged 12-24.',
-      link: '/programs/youth-mentorship',
-      icon: <FaUserGraduate className="text-4xl text-teal-600" />
+      description: 'Build confidence, develop skills, and create lasting connections through one-on-one mentoring for youth aged 12-24.',
+      link: '/programs',
+      icon: <FaUserGraduate className="text-4xl text-teal-600" />,
+      color: 'hover:border-teal-400'
     },
     {
       title: 'Family Support Services',
-      description: 'Practical support for families including counseling, resource navigation, and parent education workshops.',
+      description: 'Find practical support including counseling, resource navigation, and parent education workshops for families.',
       link: '/family-support',
-      icon: <GiFamilyHouse className="text-4xl text-teal-600" />
+      icon: <GiFamilyHouse className="text-4xl text-teal-600" />,
+      color: 'hover:border-navy/30'
     },
     {
       title: 'Skills Development',
-      description: 'Job readiness training, life skills workshops, and career exploration programs for youth and young adults.',
-      link: '/programs/skills-development',
-      icon: <FaBookOpen className="text-4xl text-teal-600" />
+      description: 'Build job readiness, learn life skills, and explore career opportunities through our skills development programs.',
+      link: '/programs',
+      icon: <FaBookOpen className="text-4xl text-teal-600" />,
+      color: 'hover:border-coral/40'
     }
   ];
 
@@ -40,13 +43,13 @@ export default function HomePrograms() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gray-50">
+    <section className="py-16 md:py-20 bg-cream">
       <div className="container">
         <div className="flex justify-between items-center mb-12">
           <SectionTitle 
             title="Featured "
             highlight="Programs"
-            subtitle="Discover our priority programs designed to make a real difference."
+            subtitle="Discover our priority programs designed to strengthen youth, families, and communities."
             centered={false}
             className="text-left !mx-0"
           />
@@ -55,7 +58,7 @@ export default function HomePrograms() {
             whileTap={{ scale: 0.95 }}
             className="hidden md:block"
           >
-            <Link to="/programs" className="text-teal-600 font-semibold hover:text-teal-700 flex items-center gap-1">
+            <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 flex items-center gap-1">
               View all <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>
@@ -73,7 +76,8 @@ export default function HomePrograms() {
               key={index}
               variant="default"
               delay={index * 0.2}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+              className={`bg-white rounded-2xl p-6 shadow-lg border-2 border-transparent ${program.color} 
+                         transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
             >
               <motion.div 
                 className="mb-4"
@@ -82,9 +86,9 @@ export default function HomePrograms() {
                 {program.icon}
               </motion.div>
               <h3 className="text-xl font-bold text-navy mb-2">{program.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{program.description}</p>
+              <p className="text-ink/70 text-sm mb-4 leading-relaxed">{program.description}</p>
               <motion.div whileHover={{ x: 5 }}>
-                <Link to={program.link} className="text-teal-600 font-semibold text-sm hover:text-teal-700 inline-flex items-center gap-1">
+                <Link to={program.link} className="text-teal font-semibold text-sm hover:text-teal/80 inline-flex items-center gap-1">
                   Learn more <FaArrowRight className="text-xs" />
                 </Link>
               </motion.div>
@@ -93,7 +97,7 @@ export default function HomePrograms() {
         </motion.div>
         
         <div className="text-center mt-8 md:hidden">
-          <Link to="/programs" className="text-teal-600 font-semibold hover:text-teal-700 inline-flex items-center gap-1">
+          <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1">
             View all programs <FaArrowRight className="text-sm" />
           </Link>
         </div>

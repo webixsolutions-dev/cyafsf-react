@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Send, User, Mail, Phone, MessageCircle, 
-  CheckCircle, AlertCircle, ArrowRight,
+  CheckCircle, AlertCircle,
   Shield, Lock, MapPin, Clock
 } from 'lucide-react';
 import AnimatedSection from '../shared/AnimatedCard';
@@ -20,6 +20,7 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('idle');
 
   const reasons = [
     { value: '', label: 'Select a reason' },
@@ -37,7 +38,6 @@ const ContactForm = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
-    // Clear error when user types
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -53,12 +53,79 @@ const ContactForm = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const sendEmail = async (data) => {
+    try {
+      const serviceId = 'service_g90ooso';
+      const templateId = 'template_zu0qdch';
+      const userId = '-Gmx6htOZ9SyRRbMi';
+
+      const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        phone: data.phone || 'Not provided',
+        reason: data.reason || 'Not specified',
+        message: data.message,
+      };
+
+      console.log('Sending email with params:', templateParams);
+
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: userId,
+          template_params: templateParams,
+        }),
+      });
+
+      // Check if response is OK (status 200-299)
+      if (!response.ok) {
+        // Try to get error message from response
+        let errorMessage = 'Failed to send email';
+        try {
+          const errorData = await response.text();
+          console.error('EmailJS Error Response:', errorData);
+          errorMessage = errorData || errorMessage;
+        } catch (e) {
+          console.error('Could not parse error response:', e);
+        }
+        throw new Error(errorMessage);
+      }
+
+      // Try to parse response as JSON, but handle plain text response
+      let responseData;
+      const textResponse = await response.text();
+      console.log('EmailJS Response:', textResponse);
+
+      if (textResponse === 'OK') {
+        // Success response is "OK"
+        responseData = { status: 'OK' };
+      } else {
+        try {
+          responseData = JSON.parse(textResponse);
+        } catch (e) {
+          console.error('Could not parse JSON response:', e);
+          responseData = { status: textResponse || 'OK' };
+        }
+      }
+
+      console.log('Email sent successfully:', responseData);
+      return { success: true };
+    } catch (error) {
+      console.error('Email send error:', error);
+      return { success: false, error: error.message };
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      // Scroll to first error
       const firstError = document.querySelector('[data-error="true"]');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -67,21 +134,44 @@ const ContactForm = () => {
     }
 
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    setSubmitStatus('idle');
+
+    try {
+      const result = await sendEmail(formData);
+      
+      if (result.success) {
+        setSubmitStatus('success');
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          reason: '',
+          message: '',
+          consent: false,
+        });
+        setTimeout(() => {
+          setSubmitted(false);
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        setSubmitStatus('error');
+        setErrors({ form: result.error || 'Failed to send message. Please try again.' });
+        setTimeout(() => {
+          setSubmitStatus('idle');
+          setErrors({});
+        }, 5000);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrors({ form: 'An unexpected error occurred. Please try again.' });
+      setTimeout(() => {
+        setSubmitStatus('idle');
+        setErrors({});
+      }, 5000);
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        reason: '',
-        message: '',
-        consent: false,
-      });
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -89,14 +179,12 @@ const ContactForm = () => {
       <div className="container">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            {/* Form */}
             <div className="lg:col-span-3">
               <AnimatedSection disableHover={true}>
                 <h2 className="text-2xl font-bold text-navy mb-2">Send us a message</h2>
                 <p className="text-ink/60 text-sm mb-6">We'll get back to you within 24 hours.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-ink/70 mb-1">
@@ -152,7 +240,6 @@ const ContactForm = () => {
                     </div>
                   </div>
 
-                  {/* Phone */}
                   <div>
                     <label className="block text-sm font-medium text-ink/70 mb-1">
                       Phone Number
@@ -172,7 +259,6 @@ const ContactForm = () => {
                     </div>
                   </div>
 
-                  {/* Reason */}
                   <div>
                     <label className="block text-sm font-medium text-ink/70 mb-1">
                       Reason for Contacting
@@ -196,7 +282,6 @@ const ContactForm = () => {
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div>
                     <label className="block text-sm font-medium text-ink/70 mb-1">
                       Message *
@@ -221,7 +306,6 @@ const ContactForm = () => {
                     )}
                   </div>
 
-                  {/* Consent */}
                   <div className="flex items-start gap-3">
                     <input
                       type="checkbox"
@@ -245,7 +329,15 @@ const ContactForm = () => {
                     </p>
                   )}
 
-                  {/* Submit Button */}
+                  {errors.form && (
+                    <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+                      <p className="text-red-600 text-sm flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.form}
+                      </p>
+                    </div>
+                  )}
+
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -273,9 +365,8 @@ const ContactForm = () => {
                     )}
                   </motion.button>
 
-                  {/* Success Message */}
                   <AnimatePresence>
-                    {submitted && (
+                    {submitted && submitStatus === 'success' && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -293,7 +384,6 @@ const ContactForm = () => {
               </AnimatedSection>
             </div>
 
-            {/* Right Column - Info */}
             <div className="lg:col-span-2">
               <AnimatedSection direction="right" disableHover={true}>
                 <div className="bg-cream rounded-2xl p-6 sticky top-24">
@@ -334,7 +424,7 @@ const ContactForm = () => {
                         <p className="text-sm font-medium text-navy">Hours</p>
                         <p className="text-sm text-ink/60">
                           Monday - Friday<br />
-                          9:00 AM - 5:00 PM EST
+                          9:00 AM - 5:00 PM 
                         </p>
                       </div>
                     </div>

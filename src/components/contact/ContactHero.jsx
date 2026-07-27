@@ -111,7 +111,7 @@ const ContactHero = () => {
               className="flex items-center gap-3 mt-4 text-white/70 text-sm"
             >
               <Clock className="w-4 h-4 text-gold" />
-              <span>Mon-Fri 9:00 AM - 5:00 PM EST</span>
+              <span>Mon-Fri 9:00 AM - 5:00 PM</span>
             </motion.div>
           </motion.div>
 

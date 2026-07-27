@@ -3,20 +3,14 @@
 import { useState } from 'react';
 import { 
   FaUserGraduate, 
-  FaHome, 
-  FaBookOpen, 
   FaHeartbeat, 
   FaUsers, 
   FaChalkboardTeacher,
   FaChild,
-  FaHands,
-  FaClock,
-  FaMapMarkerAlt,
-  FaCheckCircle,
-  FaStar
+  FaHands
 } from 'react-icons/fa';
-import { GiFamilyHouse, GiSchoolBag, GiHeartWings } from 'react-icons/gi';
-import { MdHealthAndSafety, MdPeople, MdSchool } from 'react-icons/md';
+import { GiFamilyHouse, GiSchoolBag } from 'react-icons/gi';
+import { MdSchool } from 'react-icons/md';
 import ProgramsHero from '../components/programs/ProgramsHero.jsx';
 import ProgramsFilter from '../components/programs/ProgramsFilter.jsx';
 import ProgramsGrid from '../components/programs/ProgramsGrid.jsx';
@@ -36,7 +30,7 @@ export default function Programs() {
       duration: '6-12 months',
       location: 'In-person & Virtual',
       eligibility: 'Open to all youth',
-      link: '/programs/youth-mentorship',
+      link: '/programs', // Redirect to programs page
       featured: true,
       icon: <FaUserGraduate className="text-3xl text-teal-600" />,
       iconBg: 'from-teal-100 to-teal-200'
@@ -50,7 +44,7 @@ export default function Programs() {
       duration: 'Ongoing',
       location: 'In-person & Virtual',
       eligibility: 'Families in need',
-      link: '/family-support',
+      link: '/family-support', // Redirect to family support page
       featured: true,
       icon: <GiFamilyHouse className="text-3xl text-teal-600" />,
       iconBg: 'from-teal-100 to-teal-200'
@@ -64,7 +58,7 @@ export default function Programs() {
       duration: '3-6 months',
       location: 'In-person & Virtual',
       eligibility: 'Open to all',
-      link: '/programs/skills-development',
+      link: '/programs', // Redirect to programs page
       featured: true,
       icon: <GiSchoolBag className="text-3xl text-teal-600" />,
       iconBg: 'from-teal-100 to-teal-200'
@@ -78,7 +72,7 @@ export default function Programs() {
       duration: 'Ongoing',
       location: 'Virtual',
       eligibility: 'No cost to participants',
-      link: '/programs/mental-health',
+      link: '/programs', // Redirect to programs page
       featured: false,
       icon: <FaHeartbeat className="text-3xl text-coral" />,
       iconBg: 'from-coral-100 to-coral-200'
@@ -92,7 +86,7 @@ export default function Programs() {
       duration: 'Ongoing',
       location: 'In-person',
       eligibility: 'Open to everyone',
-      link: '/programs/community-connection',
+      link: '/programs', // Redirect to programs page
       featured: false,
       icon: <FaUsers className="text-3xl text-navy" />,
       iconBg: 'from-navy-100 to-navy-200'
@@ -106,7 +100,7 @@ export default function Programs() {
       duration: '4-6 weeks',
       location: 'In-person & Virtual',
       eligibility: 'Free for all parents',
-      link: '/programs/parent-education',
+      link: '/family-support', // Redirect to family support page
       featured: false,
       icon: <FaChalkboardTeacher className="text-3xl text-gold" />,
       iconBg: 'from-gold-100 to-gold-200'
@@ -120,7 +114,7 @@ export default function Programs() {
       duration: '8-12 months',
       location: 'In-person',
       eligibility: 'Application required',
-      link: '/programs/youth-leadership',
+      link: '/programs', // Redirect to programs page
       featured: false,
       icon: <FaChild className="text-3xl text-teal-600" />,
       iconBg: 'from-teal-100 to-teal-200'
@@ -134,7 +128,7 @@ export default function Programs() {
       duration: 'Immediate/Short-term',
       location: 'Virtual & In-person',
       eligibility: 'Open to all',
-      link: '/programs/crisis-support',
+      link: '/programs', // Redirect to programs page
       featured: false,
       icon: <FaHands className="text-3xl text-coral" />,
       iconBg: 'from-coral-100 to-coral-200'
@@ -148,7 +142,7 @@ export default function Programs() {
       duration: '6 weeks',
       location: 'Virtual',
       eligibility: 'Free for participants',
-      link: '/programs/financial-literacy',
+      link: '/programs', // Redirect to programs page
       featured: false,
       icon: <MdSchool className="text-3xl text-gold" />,
       iconBg: 'from-gold-100 to-gold-200'
@@ -166,7 +160,7 @@ export default function Programs() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <ProgramsHero />
       <ProgramsFilter 
         categories={categories} 
@@ -175,6 +169,6 @@ export default function Programs() {
       />
       <ProgramsGrid programs={filteredPrograms} />
       <ProgramsCTA />
-    </>
+    </div>
   );
 }

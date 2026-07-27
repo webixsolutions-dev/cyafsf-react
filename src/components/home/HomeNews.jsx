@@ -14,7 +14,7 @@ export default function HomeNews() {
       type: 'News',
       date: 'July 20, 2026',
       summary: 'CYAFSF partners with local organizations to provide accessible mental health support for youth in our community.',
-      link: '/news/mental-health-initiative'
+      link: '/news'
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export default function HomeNews() {
       type: 'Event',
       date: 'August 15, 2026',
       summary: 'Join us for a day of family fun, activities, and community connection. Free for all families!',
-      link: '/events/community-family-day'
+      link: '/news'
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ export default function HomeNews() {
       type: 'News',
       date: 'June 28, 2026',
       summary: 'Our 2025-2026 Impact Report highlights the achievements and growth of our programs serving youth and families.',
-      link: '/news/impact-report-2026'
+      link: '/news'
     }
   ];
 
@@ -45,7 +45,7 @@ export default function HomeNews() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gray-50">
+    <section className="py-16 md:py-20 bg-white">
       <div className="container">
         <div className="flex justify-between items-center mb-12">
           <SectionTitle 
@@ -60,7 +60,7 @@ export default function HomeNews() {
             whileTap={{ scale: 0.95 }}
             className="hidden md:block"
           >
-            <Link to="/news" className="text-teal-600 font-semibold hover:text-teal-700 flex items-center gap-1">
+            <Link to="/news" className="text-teal font-semibold hover:text-teal/80 flex items-center gap-1">
               View all <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>
@@ -78,29 +78,34 @@ export default function HomeNews() {
               key={item.id}
               variant="default"
               delay={index * 0.2}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+              className="bg-cream rounded-2xl p-6 shadow-md border border-cream-dark/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               <Link to={item.link} className="block group">
                 <div className="flex items-center gap-2 mb-3">
                   <motion.div
                     whileHover={{ scale: 1.2, rotate: 10 }}
+                    className="flex-shrink-0"
                   >
                     {item.type === 'News' ? (
-                      <FaNewspaper className="text-teal-600" />
+                      <FaNewspaper className="text-teal" />
                     ) : (
                       <FaCalendarAlt className="text-coral" />
                     )}
                   </motion.div>
                   <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                    item.type === 'News' ? 'bg-teal-100 text-teal-700' : 'bg-coral/10 text-coral'
+                    item.type === 'News' ? 'bg-teal/10 text-teal' : 'bg-coral/10 text-coral'
                   }`}>
                     {item.type}
                   </span>
-                  <span className="text-xs text-gray-500 ml-auto">{item.date}</span>
+                  <span className="text-xs text-ink/50 ml-auto flex-shrink-0">{item.date}</span>
                 </div>
-                <h3 className="font-bold text-navy mb-2 group-hover:text-teal-600 transition-colors">{item.title}</h3>
-                <p className="text-sm text-gray-600 mb-3">{item.summary}</p>
-                <span className="text-teal-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                <h3 className="font-bold text-navy mb-2 group-hover:text-teal transition-colors line-clamp-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-ink/70 mb-3 leading-relaxed line-clamp-3">
+                  {item.summary}
+                </p>
+                <span className="text-teal font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Read more 
                   <motion.span
                     animate={{ x: [0, 3, 0] }}
@@ -119,7 +124,7 @@ export default function HomeNews() {
         </motion.div>
 
         <div className="text-center mt-8 md:hidden">
-          <Link to="/news" className="text-teal-600 font-semibold hover:text-teal-700 inline-flex items-center gap-1">
+          <Link to="/news" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1">
             View all news & events <FaArrowRight className="text-sm" />
           </Link>
         </div>
