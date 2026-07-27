@@ -32,12 +32,12 @@ export default function SiteHeader() {
 
       {/* Main Header */}
       <div className="container flex items-center justify-between gap-4 py-3">
-        {/* Logo */}
+        {/* Logo - Bigger Size */}
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src={logo}
             alt="CYAFSF Logo"
-            className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto object-contain"
+            className="w-36 sm:w-40 md:w-44 lg:w-48 xl:w-52 h-auto object-contain"
           />
         </Link>
 

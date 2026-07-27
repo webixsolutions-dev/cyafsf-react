@@ -5,6 +5,7 @@ import {
 import { 
   Phone, Mail, MapPin, Clock 
 } from 'lucide-react';
+import logo from '../../assets/images/Footer-logo.png';
 
 export default function SiteFooter() {
   return (
@@ -12,13 +13,17 @@ export default function SiteFooter() {
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Brand */}
         <div>
-          <p className="font-display font-extrabold text-white text-lg">CYAFSF</p>
+          <Link to="/" className="inline-block">
+            <img
+              src={logo}
+              alt="CYAFSF Logo"
+              className="w-40 sm:w-48 md:w-52 h-auto object-contain mb-3"
+            />
+          </Link>
           <p className="mt-2 max-w-[34ch] text-[#AFC3C7]">
             Stronger youth. Stronger families. Stronger communities.
           </p>
-          <p className="mt-2 text-xs text-[#8FA6AB]">
-            Charitable Reg. #12345-6789
-          </p>
+         
           {/* Social Icons */}
           <div className="flex gap-3 mt-4">
             <a href="#" className="text-[#AFC3C7] hover:text-white transition-colors" aria-label="Facebook">
@@ -85,7 +90,7 @@ export default function SiteFooter() {
             </li>
             <li className="flex items-center gap-3">
               <Clock className="w-4 h-4 text-teal flex-shrink-0" />
-              <span className="text-[#8FA6AB] text-xs">Mon-Fri 9:00 AM - 5:00 PM </span>
+              <span className="text-[#8FA6AB] text-xs">Mon-Fri 9:00 AM - 5:00 PM EST</span>
             </li>
           </ul>
         </div>
@@ -93,7 +98,7 @@ export default function SiteFooter() {
 
       {/* Bottom Bar */}
       <div className="container mt-10 pt-4 border-t border-white/15 flex flex-wrap justify-between gap-2 text-xs text-[#8FA6AB]">
-        <span>&copy; {new Date().getFullYear()} Canadian Youth and Family Support Foundation. All rights reserved.</span>
+        <span className='py-2'>&copy; {new Date().getFullYear()} Canadian Youth and Family Support Foundation. All rights reserved.</span>
         <div className="flex gap-4">
           <Link to="/privacy" className="hover:text-white hover:underline transition-colors">Privacy</Link>
           <Link to="/accessibility" className="hover:text-white hover:underline transition-colors">Accessibility</Link>
