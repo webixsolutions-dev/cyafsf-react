@@ -83,7 +83,7 @@ const AccessibilityPage = () => {
               <div className="mt-3 space-y-1 text-sm">
                 <p className="text-ink/70 flex items-center gap-2">
                   <Mail className="w-4 h-4 text-teal" />
-                  <a href="mailto:info@cyafsf.ca" className="text-teal hover:underline">info@cyafsf.ca</a>
+                  <a href="mailto:info@cyafsf.com" className="text-teal hover:underline">info@cyafsf.com</a>
                 </p>
                 <p className="text-ink/70 flex items-center gap-2">
                   <Phone className="w-4 h-4 text-teal" />
