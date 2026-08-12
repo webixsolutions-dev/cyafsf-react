@@ -120,7 +120,7 @@ const DonateCTA = () => {
               </div>
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail className="w-4 h-4 text-gold" />
-                <span>info@cyafsf.ca</span>
+                <span>info@cyafsf.com</span>
               </div>
             </div>
           </AnimatedSection>

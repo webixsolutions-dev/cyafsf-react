@@ -55,17 +55,17 @@ const GetInvolvedCTA = () => {
               className="inline-block text-gold font-semibold text-sm uppercase tracking-wider 
                          bg-white/10 px-4 py-1.5 rounded-full mb-4"
             >
-              {t('getInvolvedCTATitle') || 'Take Action'}
+             Take Action
             </motion.span>
             
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              {t('getInvolvedCTAHeading') || 'Ready to make'}
+              Ready to make
               <br />
-              <span className="text-gold">{t('getInvolvedCTAHighlight') || 'a difference?'}</span>
+              <span className="text-gold">a difference</span>
             </h2>
             
             <p className="text-white/80 text-lg mt-4">
-              {t('getInvolvedCTADesc') || 'Join us in building stronger youth, families, and communities. There are many ways to get involved and make a lasting impact.'}
+              Join us in building stronger youth, families, and communities. There are many ways to get involved and make a lasting impact.
             </p>
 
             {/* Quick Action Buttons */}
@@ -78,7 +78,7 @@ const GetInvolvedCTA = () => {
                              rounded-lg hover:bg-coral/90 transition-all duration-300 shadow-lg shadow-coral/30"
                 >
                   <Hand className="w-5 h-5" />
-                  {t('getInvolvedVolunteer') || 'Volunteer'}
+                  Volunteer
                 </motion.button>
               </Link>
               <Link to="/contact">
@@ -89,7 +89,7 @@ const GetInvolvedCTA = () => {
                              rounded-lg hover:bg-teal/90 transition-all duration-300 shadow-lg shadow-teal/30"
                 >
                   <Users className="w-5 h-5" />
-                  {t('getInvolvedPartner') || 'Partner'}
+                  {t('PartnerWithUs') || 'Partner With Us'}
                 </motion.button>
               </Link>
               <Link to="/donate">
@@ -100,7 +100,7 @@ const GetInvolvedCTA = () => {
                              rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
                 >
                   <Heart className="w-5 h-5" />
-                  {t('donate') || 'Donate'}
+                  {t('Donate') || 'Donate'}
                 </motion.button>
               </Link>
             </div>
@@ -109,15 +109,15 @@ const GetInvolvedCTA = () => {
             <div className="flex flex-wrap gap-6 mt-6">
               <Link to="/contact" className="text-white/70 hover:text-gold transition-colors text-sm flex items-center gap-1">
                 <MessageCircle className="w-4 h-4" />
-                {t('contact') || 'Contact Us'}
+                {t('Contact') || 'Contact Us'}
               </Link>
               <Link to="/events" className="text-white/70 hover:text-gold transition-colors text-sm flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                {t('getInvolvedCTAEvents') || 'Upcoming Events'}
+                { 'Upcoming Events'}
               </Link>
               <Link to="/news" className="text-white/70 hover:text-gold transition-colors text-sm flex items-center gap-1">
                 <Sparkles className="w-4 h-4" />
-                {t('footerNews') || 'News & Stories'}
+                {'News & Stories'}
               </Link>
             </div>
           </AnimatedSection>
@@ -132,10 +132,10 @@ const GetInvolvedCTA = () => {
               
               <div className="space-y-4">
                 {[
-                  { icon: Star, text: t('getInvolvedCTAWhy1') || 'Make a meaningful impact in your community', color: 'text-gold' },
-                  { icon: Users, text: t('getInvolvedCTAWhy2') || 'Connect with passionate people', color: 'text-coral' },
-                  { icon: Heart, text: t('getInvolvedCTAWhy3') || 'Support youth and families in need', color: 'text-teal' },
-                  { icon: Sparkles, text: t('getInvolvedCTAWhy4') || 'Be part of something bigger', color: 'text-gold' },
+                  { icon: Star, text:  'Empower youth to reach their full potential through mentorship and guidance', color: 'text-gold' },
+                  { icon: Users, text:  'Build stronger families and communities through connection and support', color: 'text-coral' },
+                  { icon: Heart, text: 'Transform lives by providing essential resources and opportunities', color: 'text-teal' },
+                  { icon: Sparkles, text: 'Be part of a movement creating lasting, positive change for generations', color: 'text-gold' },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -159,28 +159,28 @@ const GetInvolvedCTA = () => {
                   className="bg-white/5 rounded-xl p-3 text-center border border-white/10"
                 >
                   <p className="text-2xl font-bold text-gold">150+</p>
-                  <p className="text-xs text-white/60">{t('getInvolvedCTAVolunteers') || 'Active Volunteers'}</p>
+                  <p className="text-xs text-white/60">{ 'Active Volunteers'}</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/5 rounded-xl p-3 text-center border border-white/10"
                 >
                   <p className="text-2xl font-bold text-gold">45+</p>
-                  <p className="text-xs text-white/60">{t('getInvolvedCTAPartners') || 'Community Partners'}</p>
+                  <p className="text-xs text-white/60">{'Community Partners'}</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/5 rounded-xl p-3 text-center border border-white/10"
                 >
                   <p className="text-2xl font-bold text-gold">92%</p>
-                  <p className="text-xs text-white/60">{t('getInvolvedCTASatisfaction') || 'Satisfaction Rate'}</p>
+                  <p className="text-xs text-white/60">{ 'Satisfaction Rate'}</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/5 rounded-xl p-3 text-center border border-white/10"
                 >
                   <p className="text-2xl font-bold text-gold">15+</p>
-                  <p className="text-xs text-white/60">{t('getInvolvedCTAPrograms') || 'Programs Available'}</p>
+                  <p className="text-xs text-white/60">Programs Available</p>
                 </motion.div>
               </div>
 
@@ -192,7 +192,7 @@ const GetInvolvedCTA = () => {
                            hover:bg-white/20 transition-all duration-300 border border-white/20
                            flex items-center justify-center gap-2"
                 >
-                  {t('getInvolvedCTAExplore') || 'Explore All Ways to Help'}
+                  Explore All Ways to Help
                   <ChevronRight className="w-5 h-5" />
                 </motion.button>
               </Link>

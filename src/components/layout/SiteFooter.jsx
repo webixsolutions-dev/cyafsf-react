@@ -84,8 +84,8 @@ export default function SiteFooter() {
             </li>
             <li className="flex items-center gap-3">
               <Mail className="w-4 h-4 text-teal flex-shrink-0" />
-              <a href="mailto:info@cyafsf.ca" className="text-[#AFC3C7] hover:text-white hover:underline transition-colors">
-                info@cyafsf.ca
+              <a href="mailto:info@cyafsf.com" className="text-[#AFC3C7] hover:text-white hover:underline transition-colors">
+                info@cyafsf.com
               </a>
             </li>
             <li className="flex items-center gap-3">

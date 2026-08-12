@@ -172,11 +172,11 @@ export default function ProgramsCTA() {
             >
               <span className="flex items-center gap-2">
                 <FaPhone className="text-white" />
-                Call us: [Phone Number]
+                Call us: 1-234-567-890
               </span>
               <span className="flex items-center gap-2">
                 <FaEnvelope className="text-white" />
-                Email: [Email Address]
+                Email: info@cyafsf.com
               </span>
             </motion.div>
           </motion.div>

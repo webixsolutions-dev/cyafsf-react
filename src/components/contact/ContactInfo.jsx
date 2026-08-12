@@ -55,8 +55,8 @@ const ContactInfo = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-navy">Email</p>
-                  <a href="mailto:info@cyafsf.ca" className="text-sm text-ink/60 hover:text-teal transition-colors">
-                    info@cyafsf.ca
+                  <a href="mailto:info@cyafsf.com" className="text-sm text-ink/60 hover:text-teal transition-colors">
+                    info@cyafsf.com
                   </a>
                 </div>
               </motion.div>

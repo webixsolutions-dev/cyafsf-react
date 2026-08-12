@@ -98,7 +98,7 @@ const ContactHero = () => {
                 <Mail className="w-5 h-5 text-gold" />
                 <div>
                   <p className="text-xs text-white/60">Email us</p>
-                  <p className="text-sm font-medium">info@cyafsf.ca</p>
+                  <p className="text-sm font-medium">info@cyafsf.com</p>
                 </div>
               </a>
             </motion.div>
