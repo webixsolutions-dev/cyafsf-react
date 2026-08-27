@@ -394,8 +394,8 @@ const ContactForm = () => {
                       <Phone className="w-5 h-5 text-teal mt-0.5" />
                       <div>
                         <p className="text-sm font-medium text-navy">Phone</p>
-                        <a href="tel:+1234567890" className="text-sm text-ink/60 hover:text-teal transition-colors">
-                          1-234-567-890
+                        <a href="tel:+14034048969" className="text-sm text-ink/60 hover:text-teal transition-colors">
+                          403-404-8969
                         </a>
                       </div>
                     </div>
@@ -413,8 +413,8 @@ const ContactForm = () => {
                       <div>
                         <p className="text-sm font-medium text-navy">Address</p>
                         <p className="text-sm text-ink/60">
-                          123 Support Street<br />
-                          Ottawa, ON K1A 0B1
+                          495 Water St<br />
+                          St. John's, NL A1E 6B5
                         </p>
                       </div>
                     </div>

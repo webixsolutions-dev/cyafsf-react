@@ -28,7 +28,7 @@ export const translations = {
     footerAccessibility: 'Accessibility',
     footerTerms: 'Terms',
     footerRights: 'All rights reserved.',
-    contactAddress: '123 Support Street, Ottawa, ON K1A 0B1',
+    contactAddress: '495 Water St, St. John's, NL A1E 6B5',
     contactHours: 'Mon-Fri 9:00 AM - 5:00 PM EST',
     
     // --- HERO (Home) ---
@@ -256,7 +256,7 @@ export const translations = {
     footerAccessibility: 'Accessibilité',
     footerTerms: 'Conditions',
     footerRights: 'Tous droits réservés.',
-    contactAddress: '123 Rue Support, Ottawa, ON K1A 0B1',
+    contactAddress: '123 Rue Support, St. John's, NL A1E 6B5',
     contactHours: 'Lun-Ven 9h00 - 17h00 HNE',
     
     // --- HERO (Home) ---

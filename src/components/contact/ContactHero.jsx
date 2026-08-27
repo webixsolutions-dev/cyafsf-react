@@ -87,11 +87,11 @@ const ContactHero = () => {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8"
             >
-              <a href="tel:+1234567890" className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 hover:bg-white/20 transition-all duration-300">
+              <a href="tel:+14034048969" className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 hover:bg-white/20 transition-all duration-300">
                 <Phone className="w-5 h-5 text-gold" />
                 <div>
                   <p className="text-xs text-white/60">Call us</p>
-                  <p className="text-sm font-medium">1-234-567-890</p>
+                  <p className="text-sm font-medium">403-404-8969</p>
                 </div>
               </a>
               <a href="mailto:info@cyafsf.ca" className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 hover:bg-white/20 transition-all duration-300">

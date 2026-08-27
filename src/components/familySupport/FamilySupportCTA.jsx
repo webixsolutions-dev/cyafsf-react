@@ -78,7 +78,7 @@ const FamilySupportCTA = () => {
                 <Phone className="w-5 h-5 text-gold" />
                 <div>
                   <p className="text-sm font-medium">Call us</p>
-                  <p className="text-sm text-white/60">1-234-567-890</p>
+                  <p className="text-sm text-white/60">403-404-8969</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-white/80">
@@ -99,7 +99,7 @@ const FamilySupportCTA = () => {
                 <MapPin className="w-5 h-5 text-gold" />
                 <div>
                   <p className="text-sm font-medium">Location</p>
-                  <p className="text-sm text-white/60">123 Support Street, Ottawa</p>
+                  <p className="text-sm text-white/60">495 Water St, Ottawa</p>
                 </div>
               </div>
             </div>

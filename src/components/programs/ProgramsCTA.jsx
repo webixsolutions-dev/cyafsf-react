@@ -172,7 +172,7 @@ export default function ProgramsCTA() {
             >
               <span className="flex items-center gap-2">
                 <FaPhone className="text-white" />
-                Call us: 1-234-567-890
+                Call us: 403-404-8969
               </span>
               <span className="flex items-center gap-2">
                 <FaEnvelope className="text-white" />

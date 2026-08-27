@@ -78,7 +78,7 @@ const Privacy = () => {
               </p>
               <div className="mt-3 space-y-1 text-sm">
                 <p className="text-ink/70">Email: <a href="mailto:info@cyafs.com" className="text-teal hover:underline">info@cyafsf.com</a></p>
-                <p className="text-ink/70">Phone: <a href="tel:+1234567890" className="text-teal hover:underline">1-234-567-890</a></p>
+                <p className="text-ink/70">Phone: <a href="tel:+14034048969" className="text-teal hover:underline">403-404-8969</a></p>
               </div>
             </div>
 

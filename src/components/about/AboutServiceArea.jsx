@@ -103,7 +103,7 @@ export default function AboutServiceArea() {
           >
             <div className="w-full h-80 rounded-2xl overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.678901234567!2d-75.6769706!3d45.3512294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce08831a150dfb%3A0x6c6310ce18432438!2s123%20Support%20St%2C%20Ottawa%2C%20ON%20K1A%200B1!5e0!3m2!1sen!2sca!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.678901234567!2d-75.6769706!3d45.3512294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce08831a150dfb%3A0x6c6310ce18432438!2s495%20Water%20St%2C%20St.%20John%27s%2C%20NL%20A1E%206B5!5e0!3m2!1sen!2sca!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -115,7 +115,7 @@ export default function AboutServiceArea() {
               />
             </div>
             <p className="text-xs text-ink/40 text-center mt-2">
-              123 Support Street, Ottawa, ON K1A 0B1
+              495 Water St, St. John's, NL A1E 6B5
             </p>
           </motion.div>
         </div>

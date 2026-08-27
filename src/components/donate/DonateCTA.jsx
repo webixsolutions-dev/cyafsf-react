@@ -116,7 +116,7 @@ const DonateCTA = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6 pt-6 border-t border-white/10">
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Phone className="w-4 h-4 text-gold" />
-                <span>1-234-567-890</span>
+                <span>403-404-8969</span>
               </div>
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail className="w-4 h-4 text-gold" />

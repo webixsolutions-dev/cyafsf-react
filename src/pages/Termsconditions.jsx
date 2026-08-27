@@ -88,7 +88,7 @@ const Terms = () => {
                 </p>
                 <p className="text-ink/70 flex items-center gap-2">
                   <Phone className="w-4 h-4 text-teal" />
-                  <a href="tel:+1234567890" className="text-teal hover:underline">1-234-567-890</a>
+                  <a href="tel:+14034048969" className="text-teal hover:underline">403-404-8969</a>
                 </p>
               </div>
             </div>
