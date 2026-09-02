@@ -1,89 +1,85 @@
 // frontend/src/components/about/AboutLeadership.jsx
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaUserTie } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import SectionTitle from '../shared/SectionTitle.jsx';
-import AnimatedCard from '../shared/AnimatedCard.jsx';
 
 export default function AboutLeadership() {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const leadership = [
+  const cards = [
     {
-      name: 'Dr. Sarah Johnson',
-      title: 'Executive Director',
-      bio: '20+ years of experience in youth development and family services.',
-      icon: <FaUserTie className="text-3xl" />
+      title: 'Board of Directors',
+      description: 'Provides governance, oversight, and long-term direction for the foundation.'
     },
     {
-      name: 'Michael Chen',
-      title: 'Board Chair',
-      bio: 'Community leader with expertise in nonprofit governance and strategic planning.',
-      icon: <FaUserTie className="text-3xl" />
+      title: 'Program Leadership',
+      description: 'Guides the planning and delivery of responsive youth and family initiatives.'
     },
     {
-      name: 'Emily Rodriguez',
-      title: 'Director of Programs',
-      bio: 'Passionate about creating impactful programs for youth and families.',
-      icon: <FaUserTie className="text-3xl" />
+      title: 'Community Engagement',
+      description: 'Strengthens relationships with families, volunteers, organizations, and partners.'
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container">
+    <section className="py-16 md:py-24 bg-[#FDFBF7]">
+      <div className="container max-w-6xl">
         <SectionTitle 
-          title="Leadership "
-          highlight="Team"
-          subtitle="Dedicated individuals leading CYAFSF with passion and expertise."
+          title="Leadership & "
+          highlight="Governance"
+          subtitle="A collaborative structure focused on responsible decisions, effective programs, and community needs."
         />
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {leadership.map((person, index) => (
-            <AnimatedCard
+        {/* Center Feature Banner Image */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-sm mb-8 bg-gray-100"
+        >
+          <img 
+            src="/about/06-leadership-governance.webp" 
+            alt="CYAFSF leadership team meeting" 
+            className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-2xl"
+          />
+        </motion.div>
+
+        {/* 3 Cards Grid */}
+        <motion.div 
+          className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {cards.map((card, index) => (
+            <motion.div
               key={index}
-              variant="default"
-              delay={index * 0.2}
-              className="bg-white rounded-2xl p-8 shadow-lg text-center border border-gray-100"
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
+              variants={cardVariants}
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100/90 text-left flex flex-col justify-start h-full hover:shadow-md transition-all"
             >
-              <motion.div 
-                className="w-28 h-28 bg-gradient-to-br from-teal-100 to-teal-200 rounded-full flex items-center justify-center mx-auto mb-4"
-                animate={{
-                  scale: hoveredCard === index ? 1.1 : 1,
-                  rotate: hoveredCard === index ? 10 : 0
-                }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <div className="text-5xl text-teal-600">
-                  {person.icon}
-                </div>
-              </motion.div>
-              <h3 className="text-xl font-bold text-navy">{person.name}</h3>
-              <p className="text-teal-600 font-semibold text-sm mb-3">{person.title}</p>
-              <AnimatePresence>
-                {hoveredCard === index && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <p className="text-sm text-gray-600">{person.bio}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <motion.div 
-                className="mt-4 w-12 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto"
-                animate={{ width: hoveredCard === index ? '6rem' : '3rem' }}
-                transition={{ duration: 0.3 }}
-              />
-            </AnimatedCard>
+              <h3 className="font-bold text-navy text-lg mb-2.5">{card.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{card.description}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-}
+}
