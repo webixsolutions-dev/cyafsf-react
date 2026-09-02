@@ -63,14 +63,14 @@ export default function HomePrograms() {
             highlight="Thrive"
             subtitle="Supportive programs that promote confidence, emotional wellbeing, practical skills, and stronger relationships."
             centered={false}
-            className="text-left !mx-0 !max-w-none !mb-0 lg:flex-shrink-0 [&_h2]:lg:whitespace-nowrap [&_h2]:text-2xl sm:[&_h2]:text-3xl lg:[&_h2]:text-4xl xl:[&_h2]:text-5xl"
+            className="text-left !mx-0 !max-w-none !mb-0 lg:flex-1 [&_h2]:text-2xl sm:[&_h2]:text-3xl lg:[&_h2]:text-4xl xl:[&_h2]:text-5xl"
           />
           <motion.div 
             whileHover={{ x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden md:block"
+            className="hidden md:block shrink-0 whitespace-nowrap"
           >
-            <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 flex items-center gap-1">
+            <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1 whitespace-nowrap">
               View All <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>

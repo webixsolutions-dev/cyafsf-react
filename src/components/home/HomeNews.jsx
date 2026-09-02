@@ -67,9 +67,9 @@ export default function HomeNews() {
           <motion.div 
             whileHover={{ x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden md:block absolute top-0 right-0"
+            className="hidden md:block absolute top-0 right-0 shrink-0 whitespace-nowrap"
           >
-            <Link to="/news" className="text-teal font-semibold hover:text-teal/80 flex items-center gap-1">
+            <Link to="/news" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1 whitespace-nowrap">
               View All <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>
