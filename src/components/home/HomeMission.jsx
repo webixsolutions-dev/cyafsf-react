@@ -2,25 +2,24 @@
 
 import { motion } from 'framer-motion';
 import { FaLightbulb, FaUsers, FaRocket } from 'react-icons/fa';
-import SectionTitle from '../shared/SectionTitle.jsx';
 import AnimatedCard from '../shared/AnimatedCard.jsx';
 
 export default function HomeMission() {
   const approaches = [
     {
       icon: <FaLightbulb className="text-4xl text-gold" />,
-      title: 'Listen First',
-      description: 'Understanding individual needs and stories before offering support.'
+      title: 'Listen with Compassion',
+      description: 'We understand each person\'s experiences, strengths, needs, and goals.'
     },
     {
       icon: <FaUsers className="text-4xl text-teal-400" />,
-      title: 'Connect to Support',
-      description: 'Bridging people with the right programs, resources, and community.'
+      title: 'Connect People with Support',
+      description: 'We help youth and families find programs, resources, and community connections.'
     },
     {
       icon: <FaRocket className="text-4xl text-coral" />,
-      title: 'Create Opportunities',
-      description: 'Building pathways to skills, confidence, and lasting success.'
+      title: 'Create Opportunities for Growth',
+      description: 'We encourage confidence, skill development, wellbeing, and lasting success.'
     }
   ];
 
@@ -64,7 +63,7 @@ export default function HomeMission() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl text-white md:text-5xl font-display font-extrabold mb-6">
-              Our Mission & Approach
+              Support Begins with Understanding
             </h2>
             <motion.div 
               className="w-24 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto mb-8"
@@ -76,9 +75,8 @@ export default function HomeMission() {
               }}
             />
             <p className="text-lg md:text-xl text-[#DCE7EA] leading-relaxed mb-8">
-              At CYAFSF, we believe in <span className="text-gold font-semibold">listening first</span> — understanding the unique 
-              needs of each person we serve. We connect youth, parents, and caregivers to the right support, 
-              creating <span className="text-gold font-semibold">lasting opportunities</span> for growth, belonging, and success.
+              No young person or family should have to navigate challenges alone. We listen, 
+              understand individual needs, and connect people with relevant resources and opportunities.
             </p>
           </motion.div>
 
@@ -96,7 +94,7 @@ export default function HomeMission() {
                 >
                   {item.icon}
                 </motion.div>
-                <h3 className="font-bold mb-2">{item.title}</h3>
+                <h3 className="font-bold mb-2 text-white">{item.title}</h3>
                 <p className="text-sm text-[#DCE7EA]">{item.description}</p>
               </AnimatedCard>
             ))}
