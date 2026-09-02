@@ -2,32 +2,32 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaHandsHelping, FaHands, FaDonate, FaArrowRight } from 'react-icons/fa';
+import { FaHandsHelping, FaHands, FaSeedling } from 'react-icons/fa';
 
 export default function HomeCTA() {
   const actions = [
     {
-      to: '/donate',
+      to: '/get-involved',
       icon: <FaHandsHelping className="text-3xl text-white" />,
       title: 'Volunteer',
-      description: 'Share your time and skills to make a meaningful impact.',
-      buttonText: 'Learn More',
+      description: 'Share your time, experience, and skills to support youth and family initiatives.',
+      buttonText: 'Become a Volunteer',
       buttonColor: 'bg-white text-teal-700 hover:bg-teal-50'
     },
     {
-      to: '/donate',
+      to: '/get-involved',
       icon: <FaHands className="text-3xl text-white" />,
-      title: 'Partner',
-      description: 'Collaborate with us to expand our reach and create lasting change.',
-      buttonText: 'Learn More',
+      title: 'Partner With Us',
+      description: 'Collaborate with CYAFSF to expand support and create sustainable opportunities.',
+      buttonText: 'Explore Partnerships',
       buttonColor: 'bg-white text-teal-700 hover:bg-teal-50'
     },
     {
       to: '/donate',
-      icon: <FaDonate className="text-3xl text-white" />,
+      icon: <FaSeedling className="text-3xl text-white" />,
       title: 'Donate',
-      description: 'Your financial support helps us provide essential programs.',
-      buttonText: 'Donate Now',
+      description: 'Help provide resources, outreach, and programs that empower youth and families.',
+      buttonText: 'Donate Today',
       buttonColor: 'bg-gold text-navy hover:bg-yellow-400'
     }
   ];
@@ -105,7 +105,8 @@ export default function HomeCTA() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4">
-              Get Involved
+              Help Create{' '}
+              <span className="text-teal-200">Stronger Futures</span>
             </h2>
             <motion.div 
               className="w-24 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto mb-6"
@@ -117,7 +118,7 @@ export default function HomeCTA() {
               }}
             />
             <p className="text-teal-100 mb-12 text-lg">
-              Join us in building stronger youth, families, and communities. Your support makes a difference.
+              Meaningful change happens when communities work together. Choose how you would like to help.
             </p>
           </motion.div>
 

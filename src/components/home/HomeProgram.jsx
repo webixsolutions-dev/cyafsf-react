@@ -2,32 +2,44 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaUserGraduate, FaBookOpen } from 'react-icons/fa';
-import { GiFamilyHouse } from 'react-icons/gi';
+import { FaArrowRight } from 'react-icons/fa';
 import SectionTitle from '../shared/SectionTitle.jsx';
 import AnimatedCard from '../shared/AnimatedCard.jsx';
+
+function CardImage({ src, alt }) {
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden rounded-t-2xl">
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+  );
+}
 
 export default function HomePrograms() {
   const programs = [
     {
       title: 'Youth Mentorship Program',
-      description: 'Build confidence, develop skills, and create lasting connections through one-on-one mentoring for youth aged 12-24.',
+      description: 'Young people connect with encouraging mentors who provide guidance, support goal-setting, and help them recognize their strengths.',
       link: '/programs',
-      icon: <FaUserGraduate className="text-4xl text-teal-600" />,
+      image: '/02_Youth_Mentorship_Program.webp',
       color: 'hover:border-teal-400'
     },
     {
       title: 'Family Support Services',
-      description: 'Find practical support including counseling, resource navigation, and parent education workshops for families.',
-      link: '/family-support',
-      icon: <GiFamilyHouse className="text-4xl text-teal-600" />,
+      description: 'Families can access parenting resources, wellness education, support navigation, and community services.',
+      link: '/programs',
+      image: '/03_Family_Support_Services.webp',
       color: 'hover:border-navy/30'
     },
     {
       title: 'Skills Development',
-      description: 'Build job readiness, learn life skills, and explore career opportunities through our skills development programs.',
+      description: 'Youth develop practical life, leadership, communication, decision-making, and career-readiness skills.',
       link: '/programs',
-      icon: <FaBookOpen className="text-4xl text-teal-600" />,
+      image: '/04_Skills_Development.webp',
       color: 'hover:border-coral/40'
     }
   ];
@@ -45,13 +57,13 @@ export default function HomePrograms() {
   return (
     <section className="py-16 md:py-20 bg-cream">
       <div className="container">
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-12">
           <SectionTitle 
-            title="Featured "
-            highlight="Programs"
-            subtitle="Discover our priority programs designed to strengthen youth, families, and communities."
+            title="Programs Designed to Help People "
+            highlight="Thrive"
+            subtitle="Supportive programs that promote confidence, emotional wellbeing, practical skills, and stronger relationships."
             centered={false}
-            className="text-left !mx-0"
+            className="text-left !mx-0 !max-w-none !mb-0 lg:flex-shrink-0 [&_h2]:lg:whitespace-nowrap [&_h2]:text-2xl sm:[&_h2]:text-3xl lg:[&_h2]:text-4xl xl:[&_h2]:text-5xl"
           />
           <motion.div 
             whileHover={{ x: 5 }}
@@ -59,7 +71,7 @@ export default function HomePrograms() {
             className="hidden md:block"
           >
             <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 flex items-center gap-1">
-              View all <FaArrowRight className="text-sm" />
+              View All <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>
         </div>
@@ -76,29 +88,26 @@ export default function HomePrograms() {
               key={index}
               variant="default"
               delay={index * 0.2}
-              className={`bg-white rounded-2xl p-6 shadow-lg border-2 border-transparent ${program.color} 
+              className={`bg-white rounded-2xl overflow-hidden shadow-lg border-2 border-transparent ${program.color} 
                          transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
             >
-              <motion.div 
-                className="mb-4"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                {program.icon}
-              </motion.div>
-              <h3 className="text-xl font-bold text-navy mb-2">{program.title}</h3>
-              <p className="text-ink/70 text-sm mb-4 leading-relaxed">{program.description}</p>
-              <motion.div whileHover={{ x: 5 }}>
-                <Link to={program.link} className="text-teal font-semibold text-sm hover:text-teal/80 inline-flex items-center gap-1">
-                  Learn more <FaArrowRight className="text-xs" />
-                </Link>
-              </motion.div>
+              <CardImage src={program.image} alt={program.title} />
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-navy mb-2">{program.title}</h3>
+                <p className="text-ink/70 text-sm mb-4 leading-relaxed">{program.description}</p>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link to={program.link} className="text-teal font-semibold text-sm hover:text-teal/80 inline-flex items-center gap-1">
+                    Learn More <FaArrowRight className="text-xs" />
+                  </Link>
+                </motion.div>
+              </div>
             </AnimatedCard>
           ))}
         </motion.div>
         
         <div className="text-center mt-8 md:hidden">
           <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1">
-            View all programs <FaArrowRight className="text-sm" />
+            View All <FaArrowRight className="text-sm" />
           </Link>
         </div>
       </div>

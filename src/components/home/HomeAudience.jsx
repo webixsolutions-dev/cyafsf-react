@@ -13,27 +13,27 @@ export default function HomeAudience() {
       icon: <FaChild className="text-3xl text-teal-600" />,
       iconBg: 'bg-teal-600/10 group-hover:bg-teal-600/20',
       title: "I'm a Young Person",
-      description: 'Build skills, confidence, and connections for your future.',
+      description: 'Build confidence, strengthen life skills, explore your goals, and develop positive connections.',
       color: 'from-teal-50 to-teal-100/50 hover:from-teal-100 hover:to-teal-200/50',
       borderColor: 'hover:border-teal-400',
-      linkText: 'Explore Programs'
+      linkText: 'Explore Youth Programs'
     },
     {
       to: '/family-support',
       icon: <FaUserFriends className="text-3xl text-navy" />,
       iconBg: 'bg-navy/10 group-hover:bg-navy/20',
       title: "I'm a Parent or Caregiver",
-      description: 'Find support, resources, and community for your family.',
+      description: 'Find family wellness resources, parenting education, and helpful community connections.',
       color: 'from-navy/5 to-navy/10 hover:from-navy/10 hover:to-navy/20',
       borderColor: 'hover:border-navy/30',
-      linkText: 'Find Support'
+      linkText: 'Find Family Support'
     },
     {
       to: '/get-involved',
       icon: <FaHandsHelping className="text-3xl text-coral" />,
       iconBg: 'bg-coral/10 group-hover:bg-coral/20',
       title: 'I Want to Help',
-      description: 'Volunteer, partner, or donate to make a difference.',
+      description: 'Volunteer, partner, or donate to create stronger opportunities for youth and families.',
       color: 'from-coral/10 to-coral/20 hover:from-coral/20 hover:to-coral/30',
       borderColor: 'hover:border-coral/40',
       linkText: 'Get Involved'

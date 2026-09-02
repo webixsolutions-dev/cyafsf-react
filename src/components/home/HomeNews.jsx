@@ -2,35 +2,45 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaNewspaper, FaCalendarAlt } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import SectionTitle from '../shared/SectionTitle.jsx';
 import AnimatedCard from '../shared/AnimatedCard.jsx';
+
+function CardImage({ src, alt }) {
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden rounded-t-2xl">
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+  );
+}
 
 export default function HomeNews() {
   const newsItems = [
     {
       id: 1,
-      title: 'New Youth Mental Health Initiative Launches',
-      type: 'News',
-      date: 'July 20, 2026',
-      summary: 'CYAFSF partners with local organizations to provide accessible mental health support for youth in our community.',
-      link: '/news'
+      title: 'Program Updates',
+      summary: 'Learn about upcoming programs, workshops, and youth and family support initiatives.',
+      link: '/news',
+      image: '/05_Program_Updates.webp'
     },
     {
       id: 2,
-      title: 'Community Family Day 2026',
-      type: 'Event',
-      date: 'August 15, 2026',
-      summary: 'Join us for a day of family fun, activities, and community connection. Free for all families!',
-      link: '/news'
+      title: 'Community Events',
+      summary: 'Explore opportunities to connect, learn, volunteer, and participate in your community.',
+      link: '/news',
+      image: '/06_Community_Events.webp'
     },
     {
       id: 3,
-      title: 'Annual Impact Report Released',
-      type: 'News',
-      date: 'June 28, 2026',
-      summary: 'Our 2025-2026 Impact Report highlights the achievements and growth of our programs serving youth and families.',
-      link: '/news'
+      title: 'Resources & Stories',
+      summary: 'Find practical tools, helpful information, and stories that encourage resilience and growth.',
+      link: '/news',
+      image: '/07_Resources_and_Stories.webp'
     }
   ];
 
@@ -47,21 +57,20 @@ export default function HomeNews() {
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="container">
-        <div className="flex justify-between items-center mb-12">
+        <div className="relative mb-12">
           <SectionTitle 
-            title="News & "
-            highlight="Events"
-            subtitle="Stay updated with the latest from CYAFSF"
-            centered={false}
-            className="text-left !mx-0"
+            title="Stay Connected with "
+            highlight="CYAFSF"
+            subtitle="Discover program updates, community activities, educational resources, and opportunities to get involved."
+            centered={true}
           />
           <motion.div 
             whileHover={{ x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden md:block"
+            className="hidden md:block absolute top-0 right-0"
           >
             <Link to="/news" className="text-teal font-semibold hover:text-teal/80 flex items-center gap-1">
-              View all <FaArrowRight className="text-sm" />
+              View All <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>
         </div>
@@ -78,46 +87,31 @@ export default function HomeNews() {
               key={item.id}
               variant="default"
               delay={index * 0.2}
-              className="bg-cream rounded-2xl p-6 shadow-md border border-cream-dark/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-white rounded-2xl overflow-hidden shadow-md border border-cream-dark/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               <Link to={item.link} className="block group">
-                <div className="flex items-center gap-2 mb-3">
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                    className="flex-shrink-0"
-                  >
-                    {item.type === 'News' ? (
-                      <FaNewspaper className="text-teal" />
-                    ) : (
-                      <FaCalendarAlt className="text-coral" />
-                    )}
-                  </motion.div>
-                  <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                    item.type === 'News' ? 'bg-teal/10 text-teal' : 'bg-coral/10 text-coral'
-                  }`}>
-                    {item.type}
+                <CardImage src={item.image} alt={item.title} />
+                <div className="p-6">
+                  <h3 className="font-bold text-navy mb-2 group-hover:text-teal transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-ink/70 mb-3 leading-relaxed">
+                    {item.summary}
+                  </p>
+                  <span className="text-teal font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Read More 
+                    <motion.span
+                      animate={{ x: [0, 3, 0] }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    >
+                      <FaArrowRight className="text-xs" />
+                    </motion.span>
                   </span>
-                  <span className="text-xs text-ink/50 ml-auto flex-shrink-0">{item.date}</span>
                 </div>
-                <h3 className="font-bold text-navy mb-2 group-hover:text-teal transition-colors line-clamp-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-ink/70 mb-3 leading-relaxed line-clamp-3">
-                  {item.summary}
-                </p>
-                <span className="text-teal font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Read more 
-                  <motion.span
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    <FaArrowRight className="text-xs" />
-                  </motion.span>
-                </span>
               </Link>
             </AnimatedCard>
           ))}
@@ -125,7 +119,7 @@ export default function HomeNews() {
 
         <div className="text-center mt-8 md:hidden">
           <Link to="/news" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1">
-            View all news & events <FaArrowRight className="text-sm" />
+            View All <FaArrowRight className="text-sm" />
           </Link>
         </div>
       </div>
