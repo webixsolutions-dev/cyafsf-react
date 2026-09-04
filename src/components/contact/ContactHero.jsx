@@ -7,18 +7,21 @@ const ContactHero = () => {
   return (
     <section className="relative bg-[#062831] text-white overflow-hidden min-h-[460px] lg:min-h-[520px] flex items-center">
       
-      {/* Right Side Background Image with Gradient Fade at left edge only */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-3/5 z-0">
+      {/* Right Side Background Image - Right 50% on desktop */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
         <img 
           src="/contact/heroimage.webp" 
           alt="Support team consulting with clients" 
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-top"
         />
-        {/* Desktop Gradient Fade on left edge of image only (stops by center of section) */}
-        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-[#062831] via-[#062831]/60 to-transparent hidden lg:block" />
+        {/* Subtle seam fade on left edge of image */}
+        <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#062831] to-transparent hidden lg:block" />
         {/* Mobile Gradient Fade */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#062831] via-[#062831]/50 to-transparent lg:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#062831] via-[#062831]/60 to-transparent lg:hidden" />
       </div>
+
+      {/* Solid bluish background covering left 50% on desktop */}
+      <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 bg-[#062831] z-0 hidden lg:block" />
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10 py-12 lg:py-16">

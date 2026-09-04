@@ -78,7 +78,7 @@ const GetInvolvedVolunteer = () => {
               <img 
                 src="/getinvolved/02_make_a_difference.webp" 
                 alt="Youth doing art activities together" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           </div>

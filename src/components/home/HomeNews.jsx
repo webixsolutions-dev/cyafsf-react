@@ -95,22 +95,9 @@ export default function HomeNews() {
                   <h3 className="font-bold text-navy mb-2 group-hover:text-teal transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-ink/70 mb-3 leading-relaxed">
+                  <p className="text-sm text-ink/70 leading-relaxed">
                     {item.summary}
                   </p>
-                  <span className="text-teal font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read More 
-                    <motion.span
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
-                      }}
-                    >
-                      <FaArrowRight className="text-xs" />
-                    </motion.span>
-                  </span>
                 </div>
               </Link>
             </AnimatedCard>

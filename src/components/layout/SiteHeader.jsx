@@ -84,6 +84,7 @@ export default function SiteHeader() {
 
                 <NavLink
                   to={item.to}
+                  end={item.to === '/'}
                   className={({ isActive }) =>
                     `block py-3 md:py-2 px-4 md:px-2 font-medium text-sm transition-all
                      ${isActive

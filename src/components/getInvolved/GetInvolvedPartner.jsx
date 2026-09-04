@@ -55,7 +55,7 @@ const GetInvolvedPartner = () => {
               <img 
                 src="/getinvolved/03_partner_with_us.webp" 
                 alt="Business professionals collaborating around table" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           </div>
