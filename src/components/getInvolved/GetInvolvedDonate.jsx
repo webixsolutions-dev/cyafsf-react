@@ -2,145 +2,182 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  DollarSign, Heart, Gift, Shield,
-  CheckCircle, ArrowRight, Award,
-  TrendingUp, Users, Clock, Star
-} from 'lucide-react';
-import AnimatedSection from '../shared/AnimatedCard';
-import { useLanguage } from '../../context/LanguageContext';
+import { Heart, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const GetInvolvedDonate = () => {
-  const { t } = useLanguage();
-
-  const benefits = [
-    t('getInvolvedDonateBenefit1') || 'Directly support programs and services',
-    t('getInvolvedDonateBenefit2') || 'Tax-deductible donations',
-    t('getInvolvedDonateBenefit3') || 'Monthly giving options available',
-    t('getInvolvedDonateBenefit4') || 'Transparent reporting on impact',
-    t('getInvolvedDonateBenefit5') || 'Choose where your donation goes',
-    t('getInvolvedDonateBenefit6') || 'Receive regular impact updates',
+  const topCards = [
+    {
+      image: '/getinvolved/04_community_supporter.webp',
+      title: 'Community Supporter',
+      price: '$25/month',
+      description: 'Helps provide essential program resources',
+    },
+    {
+      image: '/getinvolved/05_youth_champion.webp',
+      title: 'Youth Champion',
+      price: '$50/month',
+      description: 'Supports youth programs and mentorship',
+    },
+    {
+      image: '/getinvolved/06_family_advocate.webp',
+      title: 'Family Advocate',
+      price: '$100/month',
+      description: 'Strengthens family support and services',
+    },
   ];
 
-  const donationImpact = [
-    { icon: Users, label: t('donateImpactYouth') || 'Youth Served', value: '2,500+' },
-    { icon: Heart, label: t('donateImpactFamilies') || 'Families Supported', value: '1,200+' },
-    { icon: Award, label: t('donateImpactFunded') || 'Programs Funded', value: '15+' },
-    { icon: TrendingUp, label: t('donateImpactPrograms') || 'Community Impact', value: '92%' },
+  const bottomCards = [
+    {
+      image: '/getinvolved/07_sponsor_youth_program.webp',
+      title: 'Sponsor A Youth Program',
+      description: 'Help fund youth programs and activities',
+    },
+    {
+      image: '/getinvolved/08_sponsor_family_resource_package.webp',
+      title: 'Sponsor A Family Resource Package',
+      description: 'Provide resources and support for families in need',
+    },
+    {
+      image: '/getinvolved/09_community_partnership_fund.webp',
+      title: 'Community Partnership Fund',
+      description: 'Support community-wide programs and initiatives',
+    },
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - No hover effects */}
-          <AnimatedSection disableHover={true}>
-            <span className="inline-block text-gold font-semibold text-sm uppercase tracking-wider 
-                           bg-gold/10 px-4 py-1.5 rounded-full mb-4">
-              {t('donate') || 'Donate'}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy">
-              {t('donateHeroTitle') || 'Your gift makes'}
-              <br />
-              <span className="text-gold">{t('donateHeroHighlight') || 'a difference'}</span>
-            </h2>
-            <p className="text-ink/70 text-lg mt-4">
-              {t('donateHeroSub') || 'Support youth, families, and communities across Canada with a donation that creates lasting change.'}
-            </p>
+    <section className="py-16 md:py-20 bg-[#FAF6EE] text-slate-800">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+        
+        {/* Category Tag */}
+        <div className="flex items-center gap-2 text-[#E5A01A] font-bold text-xs uppercase tracking-wider mb-3">
+          <Heart className="w-4 h-4 text-[#E5A01A]" />
+          <span>DONATE</span>
+        </div>
 
-            {/* Benefits */}
-            <div className="space-y-3 mt-6">
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-start gap-3 text-ink/70"
-                >
-                  <CheckCircle className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
-                  <span>{benefit}</span>
-                </motion.div>
-              ))}
+        {/* Top Layout Grid: Left Text + Right 3 Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
+          
+          {/* Left Text Column */}
+          <div className="lg:col-span-4 flex flex-col justify-between h-full pt-2">
+            <div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#082330] leading-tight">
+                Your Support
+                <br />
+                <span className="text-[#E5A01A]">Creates Opportunities</span>
+              </h2>
+
+              <p className="text-slate-600 text-base mt-4 leading-relaxed">
+                Your generosity helps provide programs, resources, and support services that empower youth and strengthen families.
+              </p>
             </div>
 
-            <Link to="/donate">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-8 inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy font-semibold 
-                           rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
+            <div className="mt-8">
+              <h3 className="font-extrabold text-[#082330] text-base leading-snug">
+                Future Builders Circle
+              </h3>
+              <h4 className="font-extrabold text-[#082330] text-base leading-snug">
+                Monthly Giving
+              </h4>
+              <p className="text-slate-600 text-sm mt-1">
+                Join our monthly giving community and make a lasting impact.
+              </p>
+            </div>
+          </div>
+
+          {/* Right 3 Vertical Cards Grid */}
+          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {topCards.map((card, idx) => (
+              <div 
+                key={idx}
+                className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100/80 flex flex-col h-full"
               >
-                <Heart className="w-5 h-5" />
-                {t('donateNow') || 'Donate Now'}
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </Link>
-
-            <div className="mt-4 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-gold" />
-              <span className="text-xs text-ink/50">{t('donateSecurePayment') || 'Secure payment • Tax receipt provided'}</span>
-            </div>
-          </AnimatedSection>
-
-          {/* Right Column - With hover effects */}
-          <AnimatedSection direction="right">
-            <div className="bg-cream rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <Gift className="w-8 h-8 text-gold" />
-                <h3 className="text-2xl font-bold text-navy">{t('donateImpact') || 'Your Impact'}</h3>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {donationImpact.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ scale: 1.05, backgroundColor: '#f0f0f0' }}
-                    className="bg-white rounded-xl p-4 text-center shadow-sm transition-all duration-300 cursor-pointer"
-                  >
-                    <item.icon className="w-6 h-6 text-gold mx-auto mb-2" />
-                    <p className="text-xl font-bold text-navy">{item.value}</p>
-                    <p className="text-xs text-ink/50">{item.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-6 p-4 bg-gold/10 rounded-xl border border-gold/20">
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-gold" />
-                  <div>
-                    <p className="text-sm font-medium text-navy">{t('donateMonthly') || 'Monthly Giving'}</p>
-                    <p className="text-xs text-ink/50">{t('donateMonthlyDesc') || 'Sustainable support for ongoing programs'}</p>
-                  </div>
+                <div className="h-40 w-full overflow-hidden">
+                  <img 
+                    src={card.image} 
+                    alt={card.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-5 flex flex-col items-center text-center flex-grow">
+                  <h4 className="font-extrabold text-[#082330] text-base">
+                    {card.title}
+                  </h4>
+                  <p className="text-[#E5A01A] font-extrabold text-sm mt-1">
+                    {card.price}
+                  </p>
+                  <p className="text-slate-500 text-xs mt-2 leading-relaxed">
+                    {card.description}
+                  </p>
                 </div>
               </div>
+            ))}
+          </div>
 
-              <div className="mt-4 p-4 bg-teal/10 rounded-xl border border-teal/20">
-                <div className="flex items-center gap-3">
-                  <Star className="w-5 h-5 text-teal" />
-                  <div>
-                    <p className="text-sm font-medium text-navy">{t('donateTransparencyNote') || '$0.92 of every dollar'}</p>
-                    <p className="text-xs text-ink/50">{t('donateProgramsNote') || 'Goes directly to programs and services'}</p>
-                  </div>
-                </div>
+        </div>
+
+        {/* Bottom Row: 3 Program Sponsor Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+          {bottomCards.map((card, idx) => (
+            <div 
+              key={idx}
+              className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100/80 flex flex-col h-full"
+            >
+              <div className="h-48 w-full overflow-hidden">
+                <img 
+                  src={card.image} 
+                  alt={card.title} 
+                  className="w-full h-full object-cover"
+                />
               </div>
-
-              <div className="mt-4 text-center">
-                <p className="text-xs text-ink/40">
-                  {t('donateReg') || 'Charitable Registration #: 12345-6789'}
+              <div className="p-6 flex flex-col items-center text-center flex-grow">
+                <h4 className="font-extrabold text-[#082330] text-lg leading-tight">
+                  {card.title}
+                </h4>
+                <p className="text-slate-500 text-sm mt-2 leading-relaxed max-w-xs">
+                  {card.description}
                 </p>
               </div>
             </div>
-          </AnimatedSection>
+          ))}
         </div>
+
+        {/* Bottom Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-12">
+          <Link to="/donate">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-[#E5A01A] hover:bg-amber-600 text-white font-bold rounded-full px-8 py-3.5 flex items-center gap-3 shadow-md transition-all text-base"
+            >
+              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <Heart className="w-4 h-4 text-white fill-current" />
+              </div>
+              <span>Make A Difference Today</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
+
+          <Link to="/donate">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-white hover:bg-slate-50 border border-slate-300 text-[#082330] font-bold rounded-full px-8 py-3.5 flex items-center gap-3 shadow-sm transition-all text-base"
+            >
+              <span>Donate Now</span>
+              <ArrowRight className="w-5 h-5 text-[#082330]" />
+            </motion.button>
+          </Link>
+        </div>
+
+        {/* Security Note */}
+        <div className="flex items-center justify-center gap-2 text-slate-500 text-xs font-medium mt-4">
+          <Heart className="w-4 h-4 text-[#E5A01A]" />
+          <span>Secure donation · Tax receipt provided</span>
+        </div>
+
       </div>
     </section>
   );
 };
 
-export default GetInvolvedDonate;
+export default GetInvolvedDonate;

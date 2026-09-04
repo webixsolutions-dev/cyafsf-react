@@ -19,14 +19,10 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      {/* Top Bar - Contact Info */}
-      <div className="hidden md:block bg-navy border-b border-gray-100">
-        <div className="container flex items-center justify-between py-2">
-          <div className="flex items-center gap-4 text-xs">
-            <span className="font-semibold text-white">
-              {t('foundationName')}
-            </span>
-          </div>
+      {/* Top Bar - Foundation Title */}
+      <div className="bg-[#071923] text-white py-1.5 text-xs font-medium border-b border-white/10">
+        <div className="container flex items-center justify-center text-center">
+          <span>Canadian Youth and Family Support Foundation</span>
         </div>
       </div>
 

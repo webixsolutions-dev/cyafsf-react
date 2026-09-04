@@ -1,144 +1,118 @@
-// src/components/getInvolved/GetInvolvedDonate.jsx
+// src/components/getInvolved/GetInvolvedPartner.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  DollarSign, Heart, Gift, Shield,
-  CheckCircle, ArrowRight, Award,
-  TrendingUp, Users, Clock, Star
+  Users, GraduationCap, BookOpen, Heart, 
+  Briefcase, Handshake, Leaf, ArrowRight
 } from 'lucide-react';
-import AnimatedSection from '../shared/AnimatedCard';
 
-const GetInvolvedDonate = () => {
-  const benefits = [
-    'Directly support programs and services',
-    'Tax-deductible donations',
-    'Monthly giving options available',
-    'Transparent reporting on impact',
-    'Choose where your donation goes',
-    'Receive regular impact updates',
+const GetInvolvedPartner = () => {
+  const partnersRow1 = [
+    { title: 'Schools', icon: GraduationCap },
+    { title: 'Universities', icon: BookOpen },
+    { title: 'Community Organizations', icon: Users },
+    { title: 'Healthcare Providers', icon: Heart },
   ];
 
-  const donationImpact = [
-    { icon: Users, label: 'Youth Served', value: '2,500+' },
-    { icon: Heart, label: 'Families Supported', value: '1,200+' },
-    { icon: Award, label: 'Programs Funded', value: '15+' },
-    { icon: TrendingUp, label: 'Community Impact', value: '92%' },
+  const partnersRow2 = [
+    { title: 'Local Businesses', icon: Briefcase },
+    { title: 'Social Service Organizations', icon: Handshake },
+    { title: 'Indigenous and Cultural Community Groups', icon: Leaf },
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - No hover effects */}
-          <AnimatedSection disableHover={true}>
-            <span className="inline-block text-gold font-semibold text-sm uppercase tracking-wider 
-                           bg-gold/10 px-4 py-1.5 rounded-full mb-4">
-              Donate
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy">
-              Your gift makes
+    <section className="py-16 md:py-20 bg-[#F2F7F9] text-slate-800">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+        
+        {/* Top Header & Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10">
+          
+          {/* Left Column Content */}
+          <div className="lg:col-span-6">
+            {/* Category Tag */}
+            <div className="flex items-center gap-2 text-[#14857E] font-bold text-xs uppercase tracking-wider mb-3">
+              <Users className="w-4 h-4" />
+              <span>PARTNER WITH US</span>
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#082330] leading-tight">
+              Stronger together
               <br />
-              <span className="text-gold">a difference</span>
+              <span className="text-[#14857E]">for lasting impact</span>
             </h2>
-            <p className="text-ink/70 text-lg mt-4">
-              Support youth, families, and communities across Canada with a 
-              donation that creates lasting change.
+
+            {/* Subtitle */}
+            <p className="text-slate-600 text-base md:text-lg mt-4 leading-relaxed max-w-xl">
+              We collaborate with organizations and businesses to expand our reach, share resources, and create more opportunities for youth and families.
             </p>
+          </div>
 
-            {/* Benefits */}
-            <div className="space-y-3 mt-6">
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-start gap-3 text-ink/70"
-                >
-                  <CheckCircle className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
-                  <span>{benefit}</span>
-                </motion.div>
-              ))}
+          {/* Right Column Image */}
+          <div className="lg:col-span-6">
+            <div className="rounded-3xl overflow-hidden shadow-lg h-[260px] md:h-[300px]">
+              <img 
+                src="/getinvolved/03_partner_with_us.webp" 
+                alt="Business professionals collaborating around table" 
+                className="w-full h-full object-cover"
+              />
             </div>
+          </div>
 
-            <Link to="/donate">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-8 inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy font-semibold 
-                           rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
-              >
-                <Heart className="w-5 h-5" />
-                Donate Now
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </Link>
-
-            <div className="mt-4 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-gold" />
-              <span className="text-xs text-ink/50">Secure payment • Tax receipt provided</span>
-            </div>
-          </AnimatedSection>
-
-          {/* Right Column - With hover effects */}
-          <AnimatedSection direction="right">
-            <div className="bg-cream rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <Gift className="w-8 h-8 text-gold" />
-                <h3 className="text-2xl font-bold text-navy">Your Impact</h3>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {donationImpact.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ scale: 1.05, backgroundColor: '#f0f0f0' }}
-                    className="bg-white rounded-xl p-4 text-center shadow-sm transition-all duration-300 cursor-pointer"
-                  >
-                    <item.icon className="w-6 h-6 text-gold mx-auto mb-2" />
-                    <p className="text-xl font-bold text-navy">{item.value}</p>
-                    <p className="text-xs text-ink/50">{item.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-6 p-4 bg-gold/10 rounded-xl border border-gold/20">
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-gold" />
-                  <div>
-                    <p className="text-sm font-medium text-navy">Monthly Giving</p>
-                    <p className="text-xs text-ink/50">Sustainable support for ongoing programs</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 p-4 bg-teal/10 rounded-xl border border-teal/20">
-                <div className="flex items-center gap-3">
-                  <Star className="w-5 h-5 text-teal" />
-                  <div>
-                    <p className="text-sm font-medium text-navy">$0.92 of every dollar</p>
-                    <p className="text-xs text-ink/50">Goes directly to programs and services</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 text-center">
-                <p className="text-xs text-ink/40">
-                  Charitable Registration #: 12345-6789
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
         </div>
+
+        {/* 7 Partner Categories Grid */}
+        <div className="space-y-4 mt-8">
+          
+          {/* Row 1: 4 items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {partnersRow1.map((item, idx) => (
+              <div 
+                key={idx}
+                className="bg-white border border-slate-100/80 shadow-sm rounded-2xl px-5 py-4 flex items-center gap-3.5 font-extrabold text-[#082330] text-sm"
+              >
+                <item.icon className="w-5 h-5 text-[#14857E] flex-shrink-0" />
+                <span>{item.title}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: 3 items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {partnersRow2.map((item, idx) => (
+              <div 
+                key={idx}
+                className="bg-white border border-slate-100/80 shadow-sm rounded-2xl px-5 py-4 flex items-center gap-3.5 font-extrabold text-[#082330] text-sm"
+              >
+                <item.icon className="w-5 h-5 text-[#14857E] flex-shrink-0" />
+                <span>{item.title}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center mt-10">
+          <Link to="/contact">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-[#107B75] hover:bg-[#0D6863] text-white font-bold rounded-full px-8 py-3.5 flex items-center gap-3 shadow-lg shadow-teal-200 transition-all text-base"
+            >
+              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <Handshake className="w-4 h-4 text-white" />
+              </div>
+              <span>Partner With Us</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
+        </div>
+
       </div>
     </section>
   );
 };
 
-export default GetInvolvedDonate;
+export default GetInvolvedPartner;

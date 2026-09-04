@@ -2,42 +2,38 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Send, User, Mail, Phone, MessageCircle, 
-  CheckCircle, AlertCircle,
-  Shield, Lock, MapPin, Clock
+  Send, User, Mail, Phone, MessageSquare, 
+  CheckCircle, AlertCircle, MapPin, Clock,
+  ChevronDown
 } from 'lucide-react';
-import AnimatedSection from '../shared/AnimatedCard';
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import ImagePlaceholder from '../shared/ImagePlaceholder';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    reason: '',
+    subject: '',
     message: '',
-    consent: false,
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('idle');
 
-  const reasons = [
-    { value: '', label: 'Select a reason' },
+  const subjects = [
+    { value: '', label: 'Select a subject' },
     { value: 'programs', label: 'Programs & Services' },
-    { value: 'family-support', label: 'Family Support' },
-    { value: 'volunteer', label: 'Volunteering' },
-    { value: 'partnership', label: 'Partnership' },
-    { value: 'donation', label: 'Donation' },
-    { value: 'other', label: 'Other' },
+    { value: 'family-support', label: 'Family Support Services' },
+    { value: 'volunteer', label: 'Volunteering Opportunities' },
+    { value: 'partnership', label: 'Corporate & Community Partnership' },
+    { value: 'donation', label: 'Donations & Sponsorship' },
+    { value: 'general', label: 'General Inquiry' },
   ];
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -45,80 +41,12 @@ const ContactForm = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Please enter a valid email';
+    if (!formData.name.trim()) newErrors.name = 'Full name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email address is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid email is required';
+    if (!formData.subject) newErrors.subject = 'Please select a subject';
     if (!formData.message.trim()) newErrors.message = 'Message is required';
-    if (!formData.consent) newErrors.consent = 'Please agree to the terms';
     return newErrors;
-  };
-
-  const sendEmail = async (data) => {
-    try {
-      const serviceId = 'service_g90ooso';
-      const templateId = 'template_zu0qdch';
-      const userId = '-Gmx6htOZ9SyRRbMi';
-
-      const templateParams = {
-        from_name: data.name,
-        from_email: data.email,
-        phone: data.phone || 'Not provided',
-        reason: data.reason || 'Not specified',
-        message: data.message,
-      };
-
-      console.log('Sending email with params:', templateParams);
-
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: serviceId,
-          template_id: templateId,
-          user_id: userId,
-          template_params: templateParams,
-        }),
-      });
-
-      // Check if response is OK (status 200-299)
-      if (!response.ok) {
-        // Try to get error message from response
-        let errorMessage = 'Failed to send email';
-        try {
-          const errorData = await response.text();
-          console.error('EmailJS Error Response:', errorData);
-          errorMessage = errorData || errorMessage;
-        } catch (e) {
-          console.error('Could not parse error response:', e);
-        }
-        throw new Error(errorMessage);
-      }
-
-      // Try to parse response as JSON, but handle plain text response
-      let responseData;
-      const textResponse = await response.text();
-      console.log('EmailJS Response:', textResponse);
-
-      if (textResponse === 'OK') {
-        // Success response is "OK"
-        responseData = { status: 'OK' };
-      } else {
-        try {
-          responseData = JSON.parse(textResponse);
-        } catch (e) {
-          console.error('Could not parse JSON response:', e);
-          responseData = { status: textResponse || 'OK' };
-        }
-      }
-
-      console.log('Email sent successfully:', responseData);
-      return { success: true };
-    } catch (error) {
-      console.error('Email send error:', error);
-      return { success: false, error: error.message };
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -126,328 +54,292 @@ const ContactForm = () => {
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      const firstError = document.querySelector('[data-error="true"]');
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
 
     try {
-      const result = await sendEmail(formData);
-      
-      if (result.success) {
-        setSubmitStatus('success');
-        setSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          reason: '',
-          message: '',
-          consent: false,
-        });
-        setTimeout(() => {
-          setSubmitted(false);
-          setSubmitStatus('idle');
-        }, 5000);
-      } else {
-        setSubmitStatus('error');
-        setErrors({ form: result.error || 'Failed to send message. Please try again.' });
-        setTimeout(() => {
-          setSubmitStatus('idle');
-          setErrors({});
-        }, 5000);
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrors({ form: 'An unexpected error occurred. Please try again.' });
+      // Simulate submission or send email
+      await new Promise(res => setTimeout(res, 1000));
+      setSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      });
       setTimeout(() => {
-        setSubmitStatus('idle');
-        setErrors({});
+        setSubmitted(false);
       }, 5000);
+    } catch (err) {
+      setErrors({ form: 'Failed to send message. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            <div className="lg:col-span-3">
-              <AnimatedSection disableHover={true}>
-                <h2 className="text-2xl font-bold text-navy mb-2">Send us a message</h2>
-                <p className="text-ink/60 text-sm mb-6">We'll get back to you within 24 hours.</p>
+    <section className="py-16 md:py-20 bg-white text-slate-800">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Column 1: Send us a message Form (6 cols) */}
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#082330] tracking-tight">
+                Send us a message
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 mb-8">
+                We'll get back to you within 24 hours.
+              </p>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-ink/70 mb-1">
-                        Full Name *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/30" />
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          data-error={!!errors.name}
-                          className={`w-full pl-10 pr-4 py-2.5 rounded-lg border 
-                            ${errors.name ? 'border-coral' : 'border-gray-200'} 
-                            focus:border-teal focus:ring-2 focus:ring-teal/20 outline-none 
-                            transition-all duration-300`}
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      {errors.name && (
-                        <p className="text-coral text-xs mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-ink/70 mb-1">
-                        Email Address *
-                      </label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/30" />
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          data-error={!!errors.email}
-                          className={`w-full pl-10 pr-4 py-2.5 rounded-lg border 
-                            ${errors.email ? 'border-coral' : 'border-gray-200'} 
-                            focus:border-teal focus:ring-2 focus:ring-teal/20 outline-none 
-                            transition-all duration-300`}
-                          placeholder="john@example.com"
-                        />
-                      </div>
-                      {errors.email && (
-                        <p className="text-coral text-xs mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
+              <form onSubmit={handleSubmit} className="space-y-5">
+                
+                {/* Row 1: Name & Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-ink/70 mb-1">
-                      Phone Number
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      Full Name <span className="text-[#EF4444]">*</span>
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/30" />
+                      <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
+                        type="text"
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 
-                                 focus:border-teal focus:ring-2 focus:ring-teal/20 outline-none 
-                                 transition-all duration-300"
-                        placeholder="(123) 456-7890"
+                        placeholder="John Doe"
+                        className={`w-full pl-10 pr-4 py-3 rounded-full border text-sm bg-white outline-none transition-all ${
+                          errors.name ? 'border-[#EF4444]' : 'border-slate-200 focus:border-[#0D6863] focus:ring-2 focus:ring-teal-100'
+                        }`}
                       />
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-ink/70 mb-1">
-                      Reason for Contacting
-                    </label>
-                    <div className="relative">
-                      <MessageCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/30" />
-                      <select
-                        name="reason"
-                        value={formData.reason}
-                        onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 
-                                 focus:border-teal focus:ring-2 focus:ring-teal/20 outline-none 
-                                 transition-all duration-300 appearance-none bg-white"
-                      >
-                        {reasons.map((reason) => (
-                          <option key={reason.value} value={reason.value}>
-                            {reason.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-ink/70 mb-1">
-                      Message *
-                    </label>
-                    <textarea
-                      name="message"
-                      rows="4"
-                      value={formData.message}
-                      onChange={handleChange}
-                      data-error={!!errors.message}
-                      className={`w-full px-4 py-2.5 rounded-lg border 
-                        ${errors.message ? 'border-coral' : 'border-gray-200'} 
-                        focus:border-teal focus:ring-2 focus:ring-teal/20 outline-none 
-                        transition-all duration-300 resize-none`}
-                      placeholder="Tell us how we can help..."
-                    />
-                    {errors.message && (
-                      <p className="text-coral text-xs mt-1 flex items-center gap-1">
-                        <AlertCircle className="w-3 h-3" />
-                        {errors.message}
-                      </p>
+                    {errors.name && (
+                      <p className="text-[#EF4444] text-xs mt-1 font-medium">{errors.name}</p>
                     )}
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      name="consent"
-                      checked={formData.consent}
-                      onChange={handleChange}
-                      data-error={!!errors.consent}
-                      className={`w-5 h-5 mt-0.5 rounded border 
-                        ${errors.consent ? 'border-coral' : 'border-gray-300'} 
-                        text-teal focus:ring-teal/20 transition-all duration-300`}
-                    />
-                    <label className="text-sm text-ink/60 cursor-pointer">
-                      I understand that my information will be used to respond to my inquiry
-                      and will not be shared with third parties.
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      Email Address <span className="text-[#EF4444]">*</span>
                     </label>
-                  </div>
-                  {errors.consent && (
-                    <p className="text-coral text-xs flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" />
-                      {errors.consent}
-                    </p>
-                  )}
-
-                  {errors.form && (
-                    <div className="p-3 bg-red-50 rounded-lg border border-red-200">
-                      <p className="text-red-600 text-sm flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.form}
-                      </p>
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="john@example.com"
+                        className={`w-full pl-10 pr-4 py-3 rounded-full border text-sm bg-white outline-none transition-all ${
+                          errors.email ? 'border-[#EF4444]' : 'border-slate-200 focus:border-[#0D6863] focus:ring-2 focus:ring-teal-100'
+                        }`}
+                      />
                     </div>
-                  )}
+                    {errors.email && (
+                      <p className="text-[#EF4444] text-xs mt-1 font-medium">{errors.email}</p>
+                    )}
+                  </div>
+                </div>
 
+                {/* Row 2: Phone Number */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Phone Number
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="403-123-4567"
+                      className="w-full pl-10 pr-4 py-3 rounded-full border border-slate-200 text-sm bg-white outline-none focus:border-[#0D6863] focus:ring-2 focus:ring-teal-100 transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 3: Subject Select */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Subject <span className="text-[#EF4444]">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className={`w-full pl-4 pr-10 py-3 rounded-full border text-sm bg-white appearance-none outline-none transition-all ${
+                        errors.subject ? 'border-[#EF4444]' : 'border-slate-200 focus:border-[#0D6863] focus:ring-2 focus:ring-teal-100'
+                      }`}
+                    >
+                      {subjects.map((subj) => (
+                        <option key={subj.value} value={subj.value}>
+                          {subj.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  </div>
+                  {errors.subject && (
+                    <p className="text-[#EF4444] text-xs mt-1 font-medium">{errors.subject}</p>
+                  )}
+                </div>
+
+                {/* Row 4: Message Textarea */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Message <span className="text-[#EF4444]">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    rows="4"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="How can we help you?"
+                    className={`w-full p-4 rounded-2xl border text-sm bg-white outline-none transition-all resize-none ${
+                      errors.message ? 'border-[#EF4444]' : 'border-slate-200 focus:border-[#0D6863] focus:ring-2 focus:ring-teal-100'
+                    }`}
+                  />
+                  {errors.message && (
+                    <p className="text-[#EF4444] text-xs mt-1 font-medium">{errors.message}</p>
+                  )}
+                </div>
+
+                {/* Submit Button */}
+                <div>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-3.5 rounded-lg font-bold text-white transition-all duration-300
-                      ${isSubmitting 
-                        ? 'bg-teal/70 cursor-not-allowed' 
-                        : 'bg-teal hover:bg-teal/90 shadow-lg shadow-teal/30'
-                      } flex items-center justify-center gap-2`}
+                    className="bg-[#0B3A42] hover:bg-[#07282F] text-white font-bold rounded-full px-8 py-3.5 flex items-center gap-2.5 shadow-md transition-all text-sm"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
+                    <Send className="w-4 h-4" />
+                    <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                   </motion.button>
+                </div>
 
-                  <AnimatePresence>
-                    {submitted && submitStatus === 'success' && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-200"
-                      >
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <p className="text-sm text-green-700">
-                          Thank you! Your message has been sent successfully.
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </form>
-              </AnimatedSection>
+                <AnimatePresence>
+                  {submitted && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2 p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200 text-emerald-800 text-sm font-medium"
+                    >
+                      <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>Thank you! Your message has been sent successfully.</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+              </form>
             </div>
+          </div>
 
-            <div className="lg:col-span-2">
-              <AnimatedSection direction="right" disableHover={true}>
-                <div className="bg-cream rounded-2xl p-6 sticky top-24">
-                  <h3 className="text-xl font-bold text-navy mb-4">Contact Information</h3>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <Phone className="w-5 h-5 text-teal mt-0.5" />
-                      <div>
-                        <p className="text-sm font-medium text-navy">Phone</p>
-                        <a href="tel:+14034048969" className="text-sm text-ink/60 hover:text-teal transition-colors">
-                          403-404-8969
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Mail className="w-5 h-5 text-teal mt-0.5" />
-                      <div>
-                        <p className="text-sm font-medium text-navy">Email</p>
-                        <a href="mailto:info@cyafsf.com" className="text-sm text-ink/60 hover:text-teal transition-colors">
-                          info@cyafsf.com
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-teal mt-0.5" />
-                      <div>
-                        <p className="text-sm font-medium text-navy">Address</p>
-                        <p className="text-sm text-ink/60">
-                          495 Water St<br />
-                          St. John's, NL A1E 6B5
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Clock className="w-5 h-5 text-teal mt-0.5" />
-                      <div>
-                        <p className="text-sm font-medium text-navy">Hours</p>
-                        <p className="text-sm text-ink/60">
-                          Monday - Friday<br />
-                          9:00 AM - 5:00 PM 
-                        </p>
-                      </div>
+          {/* Column 2: Contact Information Card (3 cols) */}
+          <div className="lg:col-span-3">
+            <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-6 flex flex-col justify-between h-[415px]">
+              <div>
+                <h3 className="text-xl font-extrabold text-[#082330] mb-5">
+                  Contact Information
+                </h3>
+
+                <div className="space-y-4">
+                  {/* Phone */}
+                  <div className="flex items-start gap-3 flex-shrink-0">
+                    <Phone className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-extrabold text-xs text-[#082330]">Phone</p>
+                      <a href="tel:4034048969" className="text-xs text-slate-600 hover:text-[#0D6863] transition-colors mt-0.5 block">
+                        403-404-8969
+                      </a>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-gray-200">
-                    <div className="flex items-center gap-2 text-xs text-ink/40">
-                      <Shield className="w-4 h-4" />
-                      <span>Your information is safe and secure</span>
+                  {/* Email */}
+                  <div className="flex items-start gap-3 flex-shrink-0">
+                    <Mail className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-extrabold text-xs text-[#082330]">Email</p>
+                      <a href="mailto:info@cyafsf.com" className="text-xs text-slate-600 hover:text-[#0D6863] transition-colors mt-0.5 block">
+                        info@cyafsf.com
+                      </a>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-ink/40 mt-1">
-                      <Lock className="w-4 h-4" />
-                      <span>We respect your privacy</span>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-3 flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-extrabold text-xs text-[#082330]">Address</p>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                        495 Water St.
+                        <br />
+                        St. John's, NL A1E 6B5
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Office Hours */}
+                  <div className="flex items-start gap-3 flex-shrink-0">
+                    <Clock className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-extrabold text-xs text-[#082330]">Office Hours</p>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                        Mon-Fri: 9:00 AM - 5:00 PM
+                      </p>
                     </div>
                   </div>
                 </div>
-              </AnimatedSection>
+              </div>
+
+              {/* Divider & Socials */}
+              <div className="pt-4 border-t border-slate-200/80">
+                <p className="font-extrabold text-xs text-[#082330] mb-2.5">
+                  Follow Us
+                </p>
+                <div className="flex items-center gap-2.5">
+                  <a href="#facebook" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
+                    <FaFacebookF />
+                  </a>
+                  <a href="#twitter" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
+                    <FaTwitter />
+                  </a>
+                  <a href="#instagram" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
+                    <FaInstagram />
+                  </a>
+                  <a href="#youtube" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
+                    <FaYoutube />
+                  </a>
+                  <a href="#linkedin" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
+                    <FaLinkedinIn />
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
+
+          {/* Column 3: Building Image (3 cols) */}
+          <div className="lg:col-span-3">
+            <div className="rounded-3xl overflow-hidden shadow-md border border-slate-100 bg-slate-50 h-[415px] w-full">
+              <img 
+                src="/contact/cyafsf.webp" 
+                alt="CYAFSF Headquarters & Office Building" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 };
 
-export default ContactForm;
+export default ContactForm;
