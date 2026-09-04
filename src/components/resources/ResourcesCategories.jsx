@@ -1,22 +1,24 @@
 // src/components/resources/ResourcesCategories.jsx
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, X, BookOpen, FileText, Video, Link as LinkIcon } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Search, LayoutGrid, BookOpen, FileText, Link as LinkIcon } from 'lucide-react';
 
-const ResourcesCategories = ({ resources, onFilteredResources }) => {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [activeType, setActiveType] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  const categories = [
-    { id: 'all', label: 'All Resources', icon: BookOpen },
+const ResourcesCategories = ({
+  activeCategory,
+  setActiveCategory,
+  activeType,
+  setActiveType,
+  searchQuery,
+  setSearchQuery,
+}) => {
+  const categoryFilters = [
+    { id: 'all', label: 'All Resources', icon: LayoutGrid },
     { id: 'Family', label: 'Family', icon: BookOpen },
     { id: 'Youth', label: 'Youth', icon: FileText },
     { id: 'Community', label: 'Community', icon: LinkIcon },
   ];
 
-  const resourceTypes = [
+  const typeFilters = [
     { id: 'all', label: 'All Types' },
     { id: 'Guide', label: 'Guides' },
     { id: 'Toolkit', label: 'Toolkits' },
@@ -24,248 +26,72 @@ const ResourcesCategories = ({ resources, onFilteredResources }) => {
     { id: 'Directory', label: 'Directories' },
   ];
 
-  // Memoize filtered resources
-  const filteredResources = useMemo(() => {
-    let filtered = resources;
-
-    // Apply category filter
-    if (activeCategory !== 'all') {
-      filtered = filtered.filter(resource => 
-        resource.category === activeCategory
-      );
-    }
-
-    // Apply type filter
-    if (activeType !== 'all') {
-      filtered = filtered.filter(resource => 
-        resource.type === activeType
-      );
-    }
-
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(resource =>
-        resource.title.toLowerCase().includes(query) ||
-        resource.description.toLowerCase().includes(query)
-      );
-    }
-
-    return filtered;
-  }, [activeCategory, activeType, searchQuery, resources]);
-
-  // Use ref to prevent infinite loop
-  const prevFilteredRef = useRef([]);
-
-  useEffect(() => {
-    const currentFiltered = JSON.stringify(filteredResources);
-    const prevFiltered = JSON.stringify(prevFilteredRef.current);
-    
-    if (currentFiltered !== prevFiltered) {
-      prevFilteredRef.current = filteredResources;
-      onFilteredResources?.(filteredResources);
-    }
-  }, [filteredResources, onFilteredResources]);
-
-  const handleCategoryClick = (category) => {
-    setActiveCategory(category);
-  };
-
-  const handleTypeClick = (type) => {
-    setActiveType(type);
-  };
-
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchQuery(value);
-  };
-
-  const clearSearch = () => {
-    setSearchQuery('');
-  };
-
-  const clearAllFilters = () => {
-    setActiveCategory('all');
-    setActiveType('all');
-    setSearchQuery('');
-  };
-
-  const hasActiveFilters = activeCategory !== 'all' || activeType !== 'all' || searchQuery !== '';
-
   return (
-    <section className="py-6 bg-white border-b border-gray-100">
-      <div className="container">
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-          {/* Category Filters */}
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-wrap gap-2"
-          >
-            {categories.map((cat) => (
-              <motion.button
-                key={cat.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleCategoryClick(cat.id)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300
-                  ${activeCategory === cat.id
-                    ? 'bg-teal text-white shadow-lg shadow-teal/30'
-                    : 'bg-gray-100 text-ink/70 hover:bg-gray-200'
+    <div className="py-4 bg-white border-b border-slate-200/60 overflow-x-auto">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-4 flex-nowrap min-w-max lg:min-w-0">
+          
+          {/* Left Category Pills (Single horizontal row) */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {categoryFilters.map((cat) => {
+              const IconComp = cat.icon;
+              const isActive = activeCategory === cat.id;
+
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#0f766e] text-white shadow-sm'
+                      : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200/80'
                   }`}
-              >
-                <cat.icon className="w-4 h-4" />
-                {cat.label}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Search & Filter */}
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex items-center gap-3 w-full lg:w-auto"
-          >
-            {/* Search Bar */}
-            <div className="relative flex-1 lg:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40" />
-              <input
-                type="text"
-                placeholder="Search resources..."
-                value={searchQuery}
-                onChange={handleSearch}
-                className="w-full pl-10 pr-10 py-2 border border-gray-200 rounded-lg 
-                         focus:border-teal focus:ring-2 focus:ring-teal/20 outline-none 
-                         transition-all duration-300"
-              />
-              {searchQuery && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  onClick={clearSearch}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-ink/40 
-                           hover:text-ink/70 transition-colors"
                 >
-                  <X className="w-4 h-4" />
-                </motion.button>
-              )}
+                  <IconComp className="w-3.5 h-3.5" />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Middle Search Input */}
+          <div className="relative w-full lg:w-56 xl:w-64 shrink">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <Search className="w-3.5 h-3.5" />
             </div>
+            <input
+              type="text"
+              placeholder="Search resources..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-3.5 py-1.5 bg-white border border-slate-200 rounded-full text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#0d9488] focus:ring-2 focus:ring-[#0d9488]/20 transition-all"
+            />
+          </div>
 
-            {/* Mobile Filter Toggle */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="lg:hidden p-2 border border-gray-200 rounded-lg hover:border-teal 
-                         transition-colors duration-300"
-            >
-              <Filter className="w-5 h-5 text-ink/60" />
-            </motion.button>
+          {/* Right Type Filter Pills (Single horizontal row) */}
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            {typeFilters.map((type) => {
+              const isActive = activeType === type.id;
 
-            {/* Type Filters - Desktop */}
-            <div className="hidden lg:flex gap-2">
-              {resourceTypes.map((type) => (
-                <motion.button
+              return (
+                <button
                   key={type.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleTypeClick(type.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300
-                    ${activeType === type.id
-                      ? 'bg-teal/10 text-teal border border-teal/30'
-                      : 'bg-gray-50 text-ink/50 hover:bg-gray-100 border border-transparent'
-                    }`}
+                  onClick={() => setActiveType(type.id)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#d1fae5] text-[#065f46] border border-[#a7f3d0]'
+                      : 'bg-slate-100/80 text-slate-600 hover:bg-slate-200/80 border border-transparent'
+                  }`}
                 >
                   {type.label}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
+                </button>
+              );
+            })}
+          </div>
+
         </div>
-
-        {/* Mobile Filter Dropdown */}
-        <AnimatePresence>
-          {isFilterOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden mt-4"
-            >
-              <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-xl">
-                {resourceTypes.map((type) => (
-                  <motion.button
-                    key={type.id}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      handleTypeClick(type.id);
-                      setIsFilterOpen(false);
-                    }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300
-                      ${activeType === type.id
-                        ? 'bg-teal text-white shadow-lg shadow-teal/30'
-                        : 'bg-white text-ink/50 hover:bg-gray-100'
-                      }`}
-                  >
-                    {type.label}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Active Filters Display */}
-        {hasActiveFilters && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-4 flex flex-wrap items-center gap-2"
-          >
-            <span className="text-sm text-ink/50">Active filters:</span>
-            
-            {activeCategory !== 'all' && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-teal/10 text-teal text-sm rounded-full">
-                {categories.find(c => c.id === activeCategory)?.label}
-                <button onClick={() => setActiveCategory('all')} className="ml-1 hover:text-coral">
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            )}
-
-            {activeType !== 'all' && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-teal/10 text-teal text-sm rounded-full">
-                {resourceTypes.find(t => t.id === activeType)?.label}
-                <button onClick={() => setActiveType('all')} className="ml-1 hover:text-coral">
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            )}
-
-            {searchQuery && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-teal/10 text-teal text-sm rounded-full">
-                "{searchQuery}"
-                <button onClick={clearSearch} className="ml-1 hover:text-coral">
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            )}
-
-            <button
-              onClick={clearAllFilters}
-              className="text-sm text-ink/50 hover:text-coral transition-colors ml-2"
-            >
-              Clear all
-            </button>
-          </motion.div>
-        )}
       </div>
-    </section>
+    </div>
   );
 };
 

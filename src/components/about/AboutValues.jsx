@@ -1,71 +1,81 @@
 // frontend/src/components/about/AboutValues.jsx
 
 import { motion } from 'framer-motion';
-import { FaLightbulb, FaUsers, FaHeart, FaHands } from 'react-icons/fa';
+import { FaEarListen, FaUsers, FaHeart, FaHandshake } from 'react-icons/fa6';
 import SectionTitle from '../shared/SectionTitle.jsx';
-import AnimatedCard from '../shared/AnimatedCard.jsx';
 
 export default function AboutValues() {
   const values = [
     {
-      icon: <FaLightbulb className="text-gold text-4xl" />,
+      icon: <FaEarListen className="text-teal text-2xl" />,
       title: 'Listen First',
-      description: 'Understanding individual needs and stories before offering support.',
-      color: 'from-gold/20 to-yellow-100',
-      borderColor: 'border-gold'
+      description: 'We begin by understanding each person\'s experiences, strengths, needs, and goals.'
     },
     {
-      icon: <FaUsers className="text-teal-600 text-4xl" />,
-      title: 'Community Connection',
-      description: 'Building bridges between people and the resources they need.',
-      color: 'from-teal-100 to-teal-50',
-      borderColor: 'border-teal-600'
+      icon: <FaUsers className="text-teal text-2xl" />,
+      title: 'Belonging & Inclusion',
+      description: 'We create welcoming spaces where young people and families feel respected and valued.'
     },
     {
-      icon: <FaHeart className="text-coral text-4xl" />,
+      icon: <FaHeart className="text-teal text-2xl" />,
       title: 'Compassionate Support',
-      description: 'Providing care and guidance with empathy, respect, and dignity.',
-      color: 'from-coral/20 to-red-50',
-      borderColor: 'border-coral'
+      description: 'We provide care and guidance with empathy, dignity, and respect.'
     },
     {
-      icon: <FaHands className="text-navy text-4xl" />,
-      title: 'Collaborative Partnership',
-      description: 'Working together with families, partners, and communities.',
-      color: 'from-navy/10 to-blue-50',
-      borderColor: 'border-navy'
+      icon: <FaHandshake className="text-teal text-2xl" />,
+      title: 'Collaboration & Accountability',
+      description: 'We work responsibly with families, partners, and communities to strengthen support.'
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <section className="py-16 md:py-20 bg-gray-50">
-      <div className="container">
+    <section className="py-16 md:py-24 bg-[#F8FAF9]">
+      <div className="container max-w-6xl">
         <SectionTitle 
           title="Our "
           highlight="Values"
-          subtitle="These core values guide everything we do at CYAFSF."
+          subtitle="These principles guide how CYAFSF listens, serves, collaborates, and grows."
         />
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {values.map((value, index) => (
-            <AnimatedCard
+            <motion.div
               key={index}
-              variant="default"
-              delay={index * 0.15}
-              className={`bg-gradient-to-br ${value.color} rounded-2xl p-6 shadow-lg border-2 ${value.borderColor}`}
+              variants={cardVariants}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100/90 text-center flex flex-col items-center h-full hover:shadow-md transition-all"
             >
-              <motion.div 
-                className="flex justify-center mb-4"
-                whileHover={{ scale: 1.2, rotate: 15 }}
-              >
+              <div className="w-16 h-16 rounded-full bg-[#DFF2EF] flex items-center justify-center mb-5 flex-shrink-0">
                 {value.icon}
-              </motion.div>
-              <h3 className="font-bold text-navy text-center mb-2">{value.title}</h3>
-              <p className="text-sm text-gray-600 text-center">{value.description}</p>
-            </AnimatedCard>
+              </div>
+              <h3 className="font-bold text-navy text-lg mb-2.5 leading-snug">{value.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed flex-grow">{value.description}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-}
+}

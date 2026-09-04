@@ -1,178 +1,122 @@
 // src/components/resources/ResourcesGrid.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  BookOpen, FileText, Video, Link as LinkIcon, 
-  Download, ArrowRight, ChevronLeft, ChevronRight,
-  Heart, Users, Shield, Clock
-} from 'lucide-react';
-import AnimatedSection from '../shared/AnimatedCard';
+import { ArrowRight, BookOpen } from 'lucide-react';
+import ImagePlaceholder from '../shared/ImagePlaceholder';
 
-const ResourcesGrid = ({ filteredResources }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const resourcesPerPage = 6;
-
-  const resources = filteredResources || [];
-
-  const iconMap = {
-    'BookOpen': BookOpen,
-    'Heart': Heart,
-    'Users': Users,
-    'Shield': Shield,
-    'Video': Video,
-    'Link': LinkIcon,
-    'FileText': FileText,
-    'Clock': Clock,
-  };
-
-  const totalPages = Math.ceil(resources.length / resourcesPerPage);
-  const currentResources = resources.slice(
-    (currentPage - 1) * resourcesPerPage,
-    currentPage * resourcesPerPage
-  );
-
-  const goToPage = (page) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const colorClasses = {
-    coral: { bg: 'bg-coral/10', text: 'text-coral', hover: 'hover:border-coral' },
-    teal: { bg: 'bg-teal/10', text: 'text-teal', hover: 'hover:border-teal' },
-    gold: { bg: 'bg-gold/10', text: 'text-gold', hover: 'hover:border-gold' },
-    navy: { bg: 'bg-navy/10', text: 'text-navy', hover: 'hover:border-navy' },
+const ResourcesGrid = ({ filteredResources = [] }) => {
+  // Map resource types to badge styling matching reference image
+  const badgeStyleMap = {
+    'Guide': { bg: 'bg-[#0d9488]', text: 'text-white' },
+    'Toolkit': { bg: 'bg-[#f97316]', text: 'text-white' },
+    'Directory': { bg: 'bg-[#eab308]', text: 'text-white' },
+    'Video Series': { bg: 'bg-[#f43f5e]', text: 'text-white' },
   };
 
   return (
-    <section className="py-16 bg-cream">
-      <div className="container">
-        {/* Results Count */}
-        <div className="flex justify-between items-center mb-8">
-          <p className="text-sm text-ink/50">{resources.length} resources found</p>
+    <section className="py-8 bg-slate-50/50">
+      <div className="container mx-auto px-4 md:px-8">
+        {/* Section Header */}
+        <div className="flex justify-between items-end mb-6">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#092e35] tracking-tight">
+              Featured Resources
+            </h2>
+            <div className="w-9 h-1 bg-[#f3b544] rounded-full mt-1.5" />
+          </div>
+          <span className="text-xs sm:text-sm font-semibold text-slate-400">
+            {filteredResources.length} resources found
+          </span>
         </div>
 
-        {/* Resources Grid */}
+        {/* Cards Grid - 6 cards horizontally in 1 line on desktop */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={currentPage}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {currentResources.map((resource, index) => {
-              const colors = colorClasses[resource.color] || colorClasses.teal;
-              const IconComponent = iconMap[resource.icon] || BookOpen;
+          {filteredResources.length > 0 ? (
+            <motion.div
+              layout
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
+            >
+              {filteredResources.map((resource, index) => {
+                const badgeInfo = badgeStyleMap[resource.type] || { bg: 'bg-[#0d9488]', text: 'text-white' };
 
-              return (
-                <AnimatedSection key={resource.id} delay={index * 0.05}>
+                return (
                   <motion.div
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.3 }}
-                    className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl 
-                               transition-all duration-300 border-2 border-transparent ${colors.hover}
-                               flex flex-col h-full`}
+                    key={resource.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.3, delay: index * 0.04 }}
+                    whileHover={{ y: -4 }}
+                    className="bg-white rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between h-full group"
                   >
-                    <div className="p-6 flex flex-col flex-1">
-                      <div className="flex items-start justify-between">
-                        <div className={`w-12 h-12 ${colors.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                          <IconComponent className={`w-6 h-6 ${colors.text}`} />
-                        </div>
-                        <span className={`text-xs font-medium ${colors.text} ${colors.bg} px-3 py-1 rounded-full flex-shrink-0`}>
-                          {resource.type}
-                        </span>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold text-navy mt-4 hover:text-teal transition-colors line-clamp-2">
-                        {resource.title}
-                      </h3>
-                      
-                      <p className="text-ink/70 text-sm mt-2 line-clamp-3 flex-1">
-                        {resource.description}
-                      </p>
-                      
-                      <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
-                        <span className="text-xs font-medium text-ink/50 bg-gray-100 px-3 py-1 rounded-full">
-                          {resource.category}
-                        </span>
+                    {/* Top Image Container */}
+                    <div className="relative h-32 sm:h-36 w-full overflow-hidden">
+                      {resource.image ? (
+                        <img 
+                          src={resource.image} 
+                          alt={resource.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <ImagePlaceholder
+                          aspectRatio="aspect-[16/9]"
+                          label={`Image for ${resource.title}`}
+                          badgeText={resource.type}
+                          badgeBg={badgeInfo.bg}
+                          className="rounded-t-xl"
+                        />
+                      )}
+                      {/* Badge Tag Overlay on bottom left of image */}
+                      <span className={`absolute bottom-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold ${badgeInfo.bg} ${badgeInfo.text} shadow-sm z-10`}>
+                        {resource.type}
+                      </span>
+                    </div>
+
+                    {/* Card Body */}
+                    <div className="p-3.5 flex flex-col flex-1 justify-between gap-3">
+                      <div className="space-y-1.5">
+                        <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#0d9488] transition-colors leading-snug line-clamp-2">
+                          {resource.title}
+                        </h3>
+                        <p className="text-slate-500 text-[11px] sm:text-xs leading-normal line-clamp-3">
+                          {resource.description}
+                        </p>
                       </div>
 
-                      {/* Redirecting to /contact */}
-                      <Link to="/contact" className="inline-flex items-center gap-2 mt-4 text-teal font-medium hover:gap-3 transition-all group">
-                        <span>Access Resource</span>
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
+                      {/* Bottom Footer Area - 2 stacked lines */}
+                      <div className="pt-2.5 border-t border-slate-100 mt-auto flex flex-col gap-2">
+                        {/* Line 1: Category Tag */}
+                        <div>
+                          <span className="inline-block bg-slate-100 text-slate-600 text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full font-medium">
+                            {resource.category}
+                          </span>
+                        </div>
+
+                        {/* Line 2: Access Resource Link */}
+                        <div>
+                          <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-1 text-[#0d9488] font-bold text-[11px] sm:text-xs hover:text-[#0f766e] transition-colors"
+                          >
+                            <span>Access Resource</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
-                </AnimatedSection>
-              );
-            })}
-          </motion.div>
+                );
+              })}
+            </motion.div>
+          ) : (
+            <div className="text-center py-12 bg-white rounded-2xl border border-slate-200">
+              <BookOpen className="w-10 h-10 text-slate-300 mx-auto mb-2" />
+              <h3 className="text-base font-bold text-slate-800">No resources found</h3>
+              <p className="text-xs text-slate-500 mt-1">Try clearing or changing your filters.</p>
+            </div>
+          )}
         </AnimatePresence>
-
-        {/* No Results */}
-        {currentResources.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16"
-          >
-            <BookOpen className="w-16 h-16 text-ink/20 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-navy">No resources found</h3>
-            <p className="text-ink/60 mt-2">Try adjusting your search or filter criteria.</p>
-          </motion.div>
-        )}
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-12">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
-              className={`p-2 rounded-lg transition-all duration-300 ${
-                currentPage === 1
-                  ? 'bg-gray-100 text-ink/30 cursor-not-allowed'
-                  : 'bg-white text-ink/60 hover:bg-teal hover:text-white'
-              }`}
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </motion.button>
-
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <motion.button
-                key={page}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => goToPage(page)}
-                className={`w-10 h-10 rounded-lg font-medium transition-all duration-300 ${
-                  currentPage === page
-                    ? 'bg-teal text-white shadow-lg shadow-teal/30'
-                    : 'bg-white text-ink/60 hover:bg-gray-100'
-                }`}
-              >
-                {page}
-              </motion.button>
-            ))}
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className={`p-2 rounded-lg transition-all duration-300 ${
-                currentPage === totalPages
-                  ? 'bg-gray-100 text-ink/30 cursor-not-allowed'
-                  : 'bg-white text-ink/60 hover:bg-teal hover:text-white'
-              }`}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </motion.button>
-          </div>
-        )}
       </div>
     </section>
   );

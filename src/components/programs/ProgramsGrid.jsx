@@ -1,72 +1,128 @@
 // frontend/src/components/programs/ProgramsGrid.jsx
 
-import { motion } from 'framer-motion';
-import { FaSearch, FaFrown } from 'react-icons/fa';
-import ProgramsCard from './ProgramsCard.jsx';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import AnimatedCard from '../shared/AnimatedCard.jsx';
 
-export default function ProgramsGrid({ programs }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
+const programs = [
+  {
+    id: 'youth-resilience-initiative',
+    title: 'Youth Resilience Initiative',
+    image: '/programs/youth-resilience-initiative.webp',
+    description: 'Help youth develop emotional strength and life skills.',
+    bullets: [
+      'Confidence-building workshops',
+      'Peer support groups',
+      'Leadership programs',
+      'Career readiness support'
+    ]
+  },
+  {
+    id: 'family-wellness-program',
+    title: 'Family Wellness Program',
+    image: '/programs/family-wellness-program.webp',
+    description: 'Strengthen family relationships.',
+    bullets: [
+      'Parenting education',
+      'Family communication workshops',
+      'Resource navigation',
+      'Community events'
+    ]
+  },
+  {
+    id: 'mental-wellness-awareness',
+    title: 'Mental Wellness Awareness Campaign',
+    image: '/programs/mental-wellness-awareness.webp',
+    description: 'Reduce stigma and increase understanding.',
+    bullets: [
+      'School presentations',
+      'Community seminars',
+      'Online education',
+      'Awareness campaigns'
+    ]
+  },
+  {
+    id: 'youth-mentorship-program',
+    title: 'Youth Mentorship Program',
+    image: '/programs/youth-mentorship.webp',
+    description: 'Connecting youth with positive mentors who provide:',
+    bullets: [
+      'Guidance',
+      'Encouragement',
+      'Goal setting',
+      'Personal development support'
+    ]
+  },
+  {
+    id: 'community-support-network',
+    title: 'Community Support Network',
+    image: '/programs/community-support-network.webp',
+    description: 'Creating partnerships that connect families with:',
+    bullets: [
+      'Local resources',
+      'Education services',
+      'Employment support',
+      'Community programs'
+    ]
+  },
+  {
+    id: 'crisis-resource-navigation',
+    title: 'Crisis & Support Resource Navigation',
+    image: '/programs/crisis-resource-navigation.webp',
+    description:
+      'Providing information and connections to appropriate professional and community resources.',
+    bullets: []
+  }
+];
 
+export default function ProgramsGrid() {
   return (
-    <section className="py-12 md:py-16 bg-gray-50">
+    <section id="programs-designed" className="py-16 md:py-20 bg-gray-50">
       <div className="container">
-        {/* Results Count */}
-        <div className="flex justify-between items-center mb-6">
-          <p className="text-sm text-gray-500">
-            {programs.length} program{programs.length !== 1 ? 's' : ''} found
-          </p>
-        </div>
+        <SectionTitle
+          title="Programs Designed to "
+          highlight="Create Change"
+          subtitle="Practical support designed to build confidence, strengthen families, and connect communities."
+        />
 
-        <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {programs.map((program, index) => (
-            <ProgramsCard 
-              key={program.id || index} 
-              program={program} 
-              index={index} 
-            />
-          ))}
-        </motion.div>
-
-        {/* Empty State */}
-        {programs.length === 0 && (
-          <motion.div 
-            className="text-center py-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
+            <AnimatedCard
+              key={program.id}
+              delay={index * 0.1}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow scroll-mt-24"
             >
-              <FaSearch className="text-6xl text-gray-300 mx-auto mb-4" />
-            </motion.div>
-            <p className="text-gray-500 text-lg">No programs found matching your criteria.</p>
-            <p className="text-gray-400 text-sm mt-2">Try adjusting your filters.</p>
-          </motion.div>
-        )}
+              <div id={program.id}>
+              <div className="flex flex-row gap-4 mb-4">
+                <div className="shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden">
+                  <img
+                    src={program.image}
+                    alt={program.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xs sm:text-[15px] lg:text-lg font-bold text-navy mb-1.5 leading-tight whitespace-nowrap">
+                    {program.title}
+                  </h3>
+                  <p className="text-ink/70 text-sm leading-relaxed">{program.description}</p>
+                </div>
+              </div>
+
+              {program.bullets.length > 0 && (
+                <ul className="space-y-2">
+                  {program.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-start gap-2 text-sm text-ink/80">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
+                      <span className="leading-relaxed whitespace-nowrap">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              </div>
+            </AnimatedCard>
+          ))}
+        </div>
       </div>
     </section>
   );

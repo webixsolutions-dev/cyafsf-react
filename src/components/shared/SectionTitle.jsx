@@ -11,32 +11,26 @@ export default function SectionTitle({
 }) {
   return (
     <motion.div 
-      className={`${centered ? 'text-center' : ''} max-w-3xl mx-auto mb-12 ${className}`}
+      className={`${centered ? 'text-center' : ''} max-w-3xl ${centered ? 'mx-auto' : ''} mb-8 sm:mb-12 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-3xl md:text-5xl font-display font-extrabold text-navy mb-4">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-navy mb-3">
         {title}
         {highlight && (
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-400">
+          <span className="text-teal font-extrabold">
             {highlight}
           </span>
         )}
       </h2>
-      <motion.div 
-        className="w-24 h-1 bg-gradient-to-r from-gold to-yellow-400 mx-auto"
-        animate={{ width: ['6rem', '8rem', '6rem'] }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
+      <div 
+        className={`h-[3px] sm:h-1 w-16 bg-gold rounded-full ${centered ? 'mx-auto' : 'mx-0'}`}
       />
       {subtitle && (
-        <p className="text-gray-600 mt-6">{subtitle}</p>
+        <p className="text-gray-600 mt-4 text-sm sm:text-base leading-relaxed">{subtitle}</p>
       )}
     </motion.div>
   );
-}
+}

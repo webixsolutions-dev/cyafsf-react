@@ -2,172 +2,117 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, Heart, Hand, Users, DollarSign,
-  Sparkles, Star, Award
-} from 'lucide-react';
+import { Users, Handshake, Heart, ArrowRight } from 'lucide-react';
 
 const GetInvolvedHero = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-r from-navy to-teal text-white overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gold rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-coral rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-teal rounded-full blur-3xl animate-pulse" />
+    <section className="relative bg-[#062831] text-white overflow-hidden py-10 lg:py-14 min-h-[420px] md:min-h-[460px] flex items-center">
+      
+      {/* Right Side Image - Placed strictly on the right half with NO overlay on the image */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
+        <img
+          src="/getinvolved/01_get_involved_hero.webp"
+          alt="Volunteers packing care packages"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Soft edge seam transition at left border of image only */}
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#062831] to-transparent hidden lg:block" />
+        {/* Mobile Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#062831] via-[#062831]/70 to-transparent lg:hidden" />
       </div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1.5 h-1.5 bg-white/20 rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -60, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 6,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
+      {/* Solid bluish background covering left half till center on desktop */}
+      <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 bg-[#062831] z-0 hidden lg:block" />
 
-      <div className="container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-block text-gold font-semibold text-sm uppercase tracking-wider 
-                         bg-white/10 px-4 py-1.5 rounded-full mb-4"
-            >
-              Get Involved
-            </motion.span>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-4xl text-white md:text-5xl lg:text-6xl font-bold leading-tight"
-            >
-              Make a difference
+      {/* Main Content Container */}
+      <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
+        <div className="max-w-xl lg:max-w-2xl">
+          <div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+              Get involved.
               <br />
-              <span className="text-gold">today</span>
-            </motion.h1>
+              Help build{' '}
+              <span className="text-[#E5A01A]">stronger futures.</span>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-white/80 text-lg mt-4 max-w-xl"
-            >
-              There are many ways to support CYAFSF and help strengthen youth, 
-              families, and communities across Canada.
-            </motion.p>
+            <p className="text-slate-300 text-sm md:text-base mt-4 max-w-xl font-normal leading-relaxed">
+              Every hour volunteered, every partnership formed, and every gift given helps create brighter possibilities for youth and families across Canada.
+            </p>
+          </div>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-wrap gap-4 mt-8"
-            >
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-coral text-white font-semibold 
-                             rounded-lg hover:bg-coral/90 transition-all duration-300 shadow-lg shadow-coral/30"
-                >
-                  <Hand className="w-5 h-5" />
-                  Volunteer
-                </motion.button>
-              </Link>
-              <Link to="/donate">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-navy font-semibold 
-                             rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg shadow-gold/30"
-                >
-                  <Heart className="w-5 h-5" />
-                  Donate Now
-                </motion.button>
-              </Link>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-white/20"
-            >
-              {[
-                { value: '150+', label: 'Active Volunteers', icon: Users },
-                { value: '45+', label: 'Community Partners', icon: Award },
-                { value: '92%', label: 'Satisfaction Rate', icon: Star },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <stat.icon className="w-5 h-5 text-gold" />
-                  <div>
-                    <p className="font-bold">{stat.value}</p>
-                    <p className="text-xs text-white/60">{stat.label}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content - Animated Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
-          >
-            {[
-              { icon: Hand, label: 'Volunteer', color: 'bg-coral/20' },
-              { icon: Users, label: 'Partner', color: 'bg-gold/20' },
-              { icon: DollarSign, label: 'Donate', color: 'bg-teal/20' },
-              { icon: Sparkles, label: 'Impact', color: 'bg-white/20' },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className={`${item.color} backdrop-blur-sm rounded-2xl p-6 text-center 
-                            border border-white/10 hover:border-white/30 transition-all duration-300
-                            hover:shadow-xl`}
+          {/* 3 Bottom Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-7 max-w-lg">
+            
+            {/* Card 1: Volunteer */}
+            <Link to="/contact" className="block group">
+              <motion.div 
+                whileHover={{ y: -3 }}
+                className="bg-white rounded-2xl p-4 shadow-lg transition-all duration-300 border border-slate-100 h-full flex flex-col justify-between"
               >
-                <item.icon className="w-8 h-8 text-white mx-auto mb-2" />
-                <p className="text-sm font-medium text-white">{item.label}</p>
+                <div>
+                  <div className="w-9 h-9 rounded-full bg-red-50 flex items-center justify-center text-[#EF4444] mb-2.5">
+                    <Users className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-extrabold text-[#EF4444] text-sm sm:text-base leading-tight">
+                    Volunteer
+                  </h3>
+                  <p className="text-[11px] text-slate-500 font-medium mt-1 leading-snug">
+                    Share your time and talents
+                  </p>
+                </div>
+                <div className="flex justify-end mt-3">
+                  <ArrowRight className="w-4 h-4 text-[#EF4444] group-hover:translate-x-0.5 transition-transform" />
+                </div>
               </motion.div>
-            ))}
-          </motion.div>
+            </Link>
+
+            {/* Card 2: Partner With Us */}
+            <Link to="/contact" className="block group">
+              <motion.div 
+                whileHover={{ y: -3 }}
+                className="bg-white rounded-2xl p-4 shadow-lg transition-all duration-300 border border-slate-100 h-full flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-9 h-9 rounded-full bg-teal-50 flex items-center justify-center text-[#14857E] mb-2.5">
+                    <Handshake className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-extrabold text-[#115C56] text-sm sm:text-base leading-tight">
+                    Partner With Us
+                  </h3>
+                  <p className="text-[11px] text-slate-500 font-medium mt-1 leading-snug">
+                    Collaborate for greater impact
+                  </p>
+                </div>
+                <div className="flex justify-end mt-3">
+                  <ArrowRight className="w-4 h-4 text-[#14857E] group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* Card 3: Donate */}
+            <Link to="/donate" className="block group">
+              <motion.div 
+                whileHover={{ y: -3 }}
+                className="bg-white rounded-2xl p-4 shadow-lg transition-all duration-300 border border-slate-100 h-full flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-9 h-9 rounded-full bg-amber-50 flex items-center justify-center text-[#E5A01A] mb-2.5">
+                    <Heart className="w-4 h-4 fill-current" />
+                  </div>
+                  <h3 className="font-extrabold text-[#E5A01A] text-sm sm:text-base leading-tight">
+                    Donate
+                  </h3>
+                  <p className="text-[11px] text-slate-500 font-medium mt-1 leading-snug">
+                    Fuel programs and change lives
+                  </p>
+                </div>
+                <div className="flex justify-end mt-3">
+                  <ArrowRight className="w-4 h-4 text-[#E5A01A] group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </motion.div>
+            </Link>
+
+          </div>
         </div>
       </div>
     </section>
@@ -175,3 +120,4 @@ const GetInvolvedHero = () => {
 };
 
 export default GetInvolvedHero;
+
