@@ -29,22 +29,28 @@ export default function AboutHero({ onScrollToMission }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-navy min-h-[520px] md:min-h-[600px] flex items-center py-16 md:py-24">
-      {/* Background Image with Gradient Overlay */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative overflow-hidden bg-[#0b2530] text-white min-h-[460px] md:min-h-[520px] flex items-center py-12 md:py-16">
+      
+      {/* Right Side Image - Placed strictly on the right half with NO overlay on the image */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
         <img 
           src="/about/01-about-hero.webp" 
           alt="CYAFSF young people and families walking together" 
-          className="w-full h-full object-cover object-center md:object-[center_30%]"
+          className="w-full h-full object-cover object-center"
         />
-        {/* Dark overlay: dense dark teal-navy gradient on left fading to transparent on right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B2530]/95 via-[#0B2530]/85 via-60% to-[#0B2530]/30 md:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B2530]/60 via-transparent to-transparent" />
+        {/* Soft edge seam transition at left border of image only */}
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b2530] to-transparent hidden lg:block" />
+        {/* Mobile Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2530] via-[#0b2530]/70 to-transparent lg:hidden" />
       </div>
 
-      <div className="container relative z-10">
+      {/* Solid bluish background covering left half till center on desktop */}
+      <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 bg-[#0b2530] z-0 hidden lg:block" />
+
+      {/* Main Content Container */}
+      <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <motion.div 
-          className="max-w-xl md:max-w-2xl"
+          className="max-w-xl lg:max-w-2xl"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -61,7 +67,7 @@ export default function AboutHero({ onScrollToMission }) {
           {/* Main Title */}
           <motion.h1 
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white mb-5 leading-[1.15]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-display font-extrabold text-white mb-4 leading-tight tracking-tight"
           >
             Working alongside{' '}
             <span className="text-gold block sm:inline">
@@ -72,7 +78,7 @@ export default function AboutHero({ onScrollToMission }) {
           {/* Body Description */}
           <motion.p 
             variants={itemVariants}
-            className="text-[#DCE7EA] text-base md:text-lg leading-relaxed mb-8 max-w-xl"
+            className="text-[#DCE7EA] text-sm md:text-base leading-relaxed mb-7 max-w-xl"
           >
             CYAFSF supports young people and families through practical resources, skill-building opportunities, compassionate guidance, and meaningful community connections.
           </motion.p>
@@ -100,4 +106,5 @@ export default function AboutHero({ onScrollToMission }) {
       </div>
     </section>
   );
-}
+}
+
