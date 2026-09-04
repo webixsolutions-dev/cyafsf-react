@@ -37,9 +37,10 @@ export default function HomeHero() {
       className="relative overflow-hidden text-white py-20 md:py-28"
     >
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-no-repeat"
         style={{
           backgroundImage: "url('/01_CYAFSF_Hero.webp')",
+          backgroundPosition: 'center 15%',
         }}
       />
 

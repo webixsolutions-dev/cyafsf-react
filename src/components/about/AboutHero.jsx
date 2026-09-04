@@ -31,26 +31,23 @@ export default function AboutHero({ onScrollToMission }) {
   return (
     <section className="relative overflow-hidden bg-[#0b2530] text-white min-h-[460px] md:min-h-[520px] flex items-center py-12 md:py-16">
       
-      {/* Right Side Image - Placed strictly on the right half with NO overlay on the image */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
+      {/* Right Side Image - 60% width of the section from the right side */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[60%] z-0">
         <img 
           src="/about/01-about-hero.webp" 
           alt="CYAFSF young people and families walking together" 
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-right lg:object-center"
         />
-        {/* Soft edge seam transition at left border of image only */}
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b2530] to-transparent hidden lg:block" />
-        {/* Mobile Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2530] via-[#0b2530]/70 to-transparent lg:hidden" />
+        {/* Soft seamless gradient transition fading from solid navy background on left into image */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[50%] bg-gradient-to-r from-[#0b2530] via-[#0b2530]/85 to-transparent hidden lg:block" />
+        {/* Mobile Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2530] via-[#0b2530]/90 to-[#0b2530]/40 lg:hidden" />
       </div>
-
-      {/* Solid bluish background covering left half till center on desktop */}
-      <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 bg-[#0b2530] z-0 hidden lg:block" />
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <motion.div 
-          className="max-w-xl lg:max-w-2xl"
+          className="max-w-xl lg:max-w-xl xl:max-w-2xl"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -61,7 +58,7 @@ export default function AboutHero({ onScrollToMission }) {
             className="flex items-center gap-2 text-gold font-bold text-xs md:text-sm tracking-widest uppercase mb-4"
           >
             <span className="w-2.5 h-2.5 bg-gold rounded-full inline-block shadow-sm" />
-            About CYAFSF
+            ABOUT CYAFSF
           </motion.div>
 
           {/* Main Title */}
@@ -90,13 +87,13 @@ export default function AboutHero({ onScrollToMission }) {
           >
             <button
               onClick={onScrollToMission}
-              className="px-7 py-3 bg-coral hover:bg-coral-dark text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer text-sm md:text-base"
+              className="px-7 py-3 bg-[#f06453] hover:bg-[#e05342] text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer text-sm md:text-base"
             >
               Our Purpose
             </button>
             <Link to="/contact">
               <button
-                className="px-7 py-3 border border-white/80 hover:border-white hover:bg-white/10 text-white font-semibold rounded-full transition-all duration-200 cursor-pointer text-sm md:text-base"
+                className="px-7 py-3 border border-white/60 hover:border-white hover:bg-white/10 text-white font-semibold rounded-full transition-all duration-200 cursor-pointer text-sm md:text-base"
               >
                 Get in Touch
               </button>

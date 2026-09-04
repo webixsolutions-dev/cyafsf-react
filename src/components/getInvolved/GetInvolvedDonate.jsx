@@ -95,7 +95,7 @@ const GetInvolvedDonate = () => {
                   <img 
                     src={card.image} 
                     alt={card.title} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <div className="p-5 flex flex-col items-center text-center flex-grow">
@@ -126,7 +126,7 @@ const GetInvolvedDonate = () => {
                 <img 
                   src={card.image} 
                   alt={card.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="p-6 flex flex-col items-center text-center flex-grow">
