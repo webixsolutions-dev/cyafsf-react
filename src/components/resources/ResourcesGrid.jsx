@@ -84,19 +84,25 @@ const ResourcesGrid = ({ filteredResources = [] }) => {
                         </p>
                       </div>
 
-                      {/* Bottom Footer Row */}
-                      <div className="pt-2 flex items-center justify-between border-t border-slate-100 mt-auto">
-                        <span className="bg-slate-100 text-slate-600 text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full font-medium">
-                          {resource.category}
-                        </span>
+                      {/* Bottom Footer Area - 2 stacked lines */}
+                      <div className="pt-2.5 border-t border-slate-100 mt-auto flex flex-col gap-2">
+                        {/* Line 1: Category Tag */}
+                        <div>
+                          <span className="inline-block bg-slate-100 text-slate-600 text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full font-medium">
+                            {resource.category}
+                          </span>
+                        </div>
 
-                        <Link
-                          to="/contact"
-                          className="inline-flex items-center gap-1 text-[#0d9488] font-bold text-[11px] sm:text-xs hover:text-[#0f766e] transition-colors whitespace-nowrap"
-                        >
-                          <span>Access Resource</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                        </Link>
+                        {/* Line 2: Access Resource Link */}
+                        <div>
+                          <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-1 text-[#0d9488] font-bold text-[11px] sm:text-xs hover:text-[#0f766e] transition-colors"
+                          >
+                            <span>Access Resource</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
