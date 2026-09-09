@@ -2,11 +2,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Send, User, Mail, Phone, MessageSquare, 
-  CheckCircle, AlertCircle, MapPin, Clock,
+  Send, User, Mail, Phone, 
+  CheckCircle, MapPin, Clock,
   ChevronDown
 } from 'lucide-react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -84,7 +84,7 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Column 1: Send us a message Form */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
+          <div className="lg:col-span-7 self-start">
             <div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#082330] tracking-tight">
                 Send us a message
@@ -239,12 +239,15 @@ const ContactForm = () => {
             </div>
           </div>
 
-          {/* Column 2: Contact Information Card */}
-          <div className="lg:col-span-5">
-            <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full max-w-md lg:max-w-none lg:ml-auto">
-              <h3 className="text-xl font-extrabold text-[#082330] mb-4">
+          {/* Column 2: Contact Information */}
+          <div className="lg:col-span-5 self-start">
+            <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#082330] tracking-tight">
                 Contact Information
-              </h3>
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 mb-5">
+                Reach us directly during office hours.
+              </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
                 {/* Phone */}
@@ -308,12 +311,6 @@ const ContactForm = () => {
                   </a>
                   <a href="#instagram" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
                     <FaInstagram />
-                  </a>
-                  <a href="#youtube" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
-                    <FaYoutube />
-                  </a>
-                  <a href="#linkedin" className="w-8 h-8 rounded-full bg-[#0D6863] hover:bg-[#07282F] text-white flex items-center justify-center text-xs transition-colors">
-                    <FaLinkedinIn />
                   </a>
                 </div>
               </div>
