@@ -1,8 +1,5 @@
 // src/components/getInvolved/GetInvolvedHero.jsx
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Users, Handshake, Heart, ArrowRight } from 'lucide-react';
 
 const GetInvolvedHero = () => {
   return (
@@ -39,80 +36,6 @@ const GetInvolvedHero = () => {
               Every hour volunteered, every partnership formed, and every gift given helps create brighter possibilities for youth and families across Canada.
             </p>
           </div>
-
-          {/* 3 Bottom Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-7 max-w-lg">
-            
-            {/* Card 1: Volunteer */}
-            <Link to="/contact" className="block group">
-              <motion.div 
-                whileHover={{ y: -3 }}
-                className="bg-white rounded-2xl p-4 shadow-lg transition-all duration-300 border border-slate-100 h-full flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-9 h-9 rounded-full bg-red-50 flex items-center justify-center text-[#EF4444] mb-2.5">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-extrabold text-[#EF4444] text-sm sm:text-base leading-tight">
-                    Volunteer
-                  </h3>
-                  <p className="text-[11px] text-slate-500 font-medium mt-1 leading-snug">
-                    Share your time and talents
-                  </p>
-                </div>
-                <div className="flex justify-end mt-3">
-                  <ArrowRight className="w-4 h-4 text-[#EF4444] group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </motion.div>
-            </Link>
-
-            {/* Card 2: Partner With Us */}
-            <Link to="/contact" className="block group">
-              <motion.div 
-                whileHover={{ y: -3 }}
-                className="bg-white rounded-2xl p-4 shadow-lg transition-all duration-300 border border-slate-100 h-full flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-9 h-9 rounded-full bg-teal-50 flex items-center justify-center text-[#14857E] mb-2.5">
-                    <Handshake className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-extrabold text-[#115C56] text-sm sm:text-base leading-tight">
-                    Partner With Us
-                  </h3>
-                  <p className="text-[11px] text-slate-500 font-medium mt-1 leading-snug">
-                    Collaborate for greater impact
-                  </p>
-                </div>
-                <div className="flex justify-end mt-3">
-                  <ArrowRight className="w-4 h-4 text-[#14857E] group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </motion.div>
-            </Link>
-
-            {/* Card 3: Donate */}
-            <Link to="/donate" className="block group">
-              <motion.div 
-                whileHover={{ y: -3 }}
-                className="bg-white rounded-2xl p-4 shadow-lg transition-all duration-300 border border-slate-100 h-full flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-9 h-9 rounded-full bg-amber-50 flex items-center justify-center text-[#E5A01A] mb-2.5">
-                    <Heart className="w-4 h-4 fill-current" />
-                  </div>
-                  <h3 className="font-extrabold text-[#E5A01A] text-sm sm:text-base leading-tight">
-                    Donate
-                  </h3>
-                  <p className="text-[11px] text-slate-500 font-medium mt-1 leading-snug">
-                    Fuel programs and change lives
-                  </p>
-                </div>
-                <div className="flex justify-end mt-3">
-                  <ArrowRight className="w-4 h-4 text-[#E5A01A] group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </motion.div>
-            </Link>
-
-          </div>
         </div>
       </div>
     </section>
@@ -120,4 +43,4 @@ const GetInvolvedHero = () => {
 };
 
 export default GetInvolvedHero;
-
+

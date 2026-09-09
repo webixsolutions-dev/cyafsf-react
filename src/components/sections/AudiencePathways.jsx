@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const PATHWAYS = [
-  { to: '/programs', q: "I'm a young person", d: 'Explore programs and opportunities built around what you need right now.', border: 'border-t-gold' },
+  { to: '/our-programs', q: "I'm a young person", d: 'Explore programs and opportunities built around what you need right now.', border: 'border-t-gold' },
   { to: '/family-support', q: "I'm a parent or caregiver", d: 'Find guidance, referrals and practical support for your family.', border: 'border-t-coral' },
   { to: '/get-involved', q: 'I want to help', d: 'Volunteer, partner or give &mdash; see the ways you can make a difference.', border: 'border-t-teal' },
 ];

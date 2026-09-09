@@ -9,7 +9,7 @@ import AnimatedCard from '../shared/AnimatedCard.jsx';
 export default function HomeAudience() {
   const audiences = [
     {
-      to: '/programs',
+      to: '/our-programs',
       icon: <FaChild className="text-3xl text-teal-600" />,
       iconBg: 'bg-teal-600/10 group-hover:bg-teal-600/20',
       title: "I'm a Young Person",

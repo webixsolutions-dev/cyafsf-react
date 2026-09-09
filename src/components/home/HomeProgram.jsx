@@ -24,21 +24,21 @@ export default function HomePrograms() {
     {
       title: 'Youth Mentorship Program',
       description: 'Young people connect with encouraging mentors who provide guidance, support goal-setting, and help them recognize their strengths.',
-      link: '/programs',
+      link: '/our-programs',
       image: '/02_Youth_Mentorship_Program.webp',
       color: 'hover:border-teal-400'
     },
     {
       title: 'Family Support Services',
       description: 'Families can access parenting resources, wellness education, support navigation, and community services.',
-      link: '/programs',
+      link: '/our-programs',
       image: '/03_Family_Support_Services.webp',
       color: 'hover:border-navy/30'
     },
     {
       title: 'Skills Development',
       description: 'Youth develop practical life, leadership, communication, decision-making, and career-readiness skills.',
-      link: '/programs',
+      link: '/our-programs',
       image: '/04_Skills_Development.webp',
       color: 'hover:border-coral/40'
     }
@@ -70,7 +70,7 @@ export default function HomePrograms() {
             whileTap={{ scale: 0.95 }}
             className="hidden md:block shrink-0 whitespace-nowrap"
           >
-            <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1 whitespace-nowrap">
+            <Link to="/our-programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1 whitespace-nowrap">
               View All <FaArrowRight className="text-sm" />
             </Link>
           </motion.div>
@@ -106,7 +106,7 @@ export default function HomePrograms() {
         </motion.div>
         
         <div className="text-center mt-8 md:hidden">
-          <Link to="/programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1">
+          <Link to="/our-programs" className="text-teal font-semibold hover:text-teal/80 inline-flex items-center gap-1">
             View All <FaArrowRight className="text-sm" />
           </Link>
         </div>

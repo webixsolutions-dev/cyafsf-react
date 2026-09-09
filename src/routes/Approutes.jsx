@@ -36,8 +36,8 @@ export default function AppRoutes() {
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/programs" element={<Programs />} />
+        <Route path="/about-us" element={<About />} />
+        <Route path="/our-programs" element={<Programs />} />
         <Route path="/family-support" element={<FamilySupport />} />
         <Route path="/events" element={<Events />} />
         <Route path="/resources" element={<Resources />} />

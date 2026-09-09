@@ -39,13 +39,13 @@ export default function Hero() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link 
-              to="/programs" 
+              to="/our-programs" 
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-coral text-white font-semibold rounded-lg hover:bg-coral/90 transition-colors shadow-lg hover:shadow-xl"
             >
               Find Support
             </Link>
             <Link 
-              to="/programs" 
+              to="/our-programs" 
               className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-white/40 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
             >
               Explore Programs <FaArrowRight className="text-sm" />

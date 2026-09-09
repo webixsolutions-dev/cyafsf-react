@@ -93,19 +93,19 @@ export default function SiteFooter() {
 
             <li>
               <Link
-                to="/about"
+                to="/about-us"
                 className="hover:text-white hover:underline transition-colors"
               >
-                About Us
+                About us
               </Link>
             </li>
 
             <li>
               <Link
-                to="/programs"
+                to="/our-programs"
                 className="hover:text-white hover:underline transition-colors"
               >
-                Programs
+                Our programs
               </Link>
             </li>
 

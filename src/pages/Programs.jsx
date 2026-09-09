@@ -12,16 +12,9 @@ export default function Programs() {
     document.title = 'Programs & Services | CYAFSF';
   }, []);
 
-  const scrollToCategories = () => {
-    const element = document.getElementById('program-categories');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <>
-      <ProgramsHero onExplorePrograms={scrollToCategories} />
+      <ProgramsHero />
       <ProgramsCategories />
       <ProgramsGrid />
       <ProgramsWhoWeHelp />
