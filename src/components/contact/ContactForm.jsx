@@ -7,8 +7,6 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
-import ImagePlaceholder from '../shared/ImagePlaceholder';
-
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -85,8 +83,8 @@ const ContactForm = () => {
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Column 1: Send us a message Form (6 cols) */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
+          {/* Column 1: Send us a message Form */}
+          <div className="lg:col-span-7 flex flex-col justify-between">
             <div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#082330] tracking-tight">
                 Send us a message
@@ -241,65 +239,63 @@ const ContactForm = () => {
             </div>
           </div>
 
-          {/* Column 2: Contact Information Card (3 cols) */}
-          <div className="lg:col-span-3">
-            <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-6 flex flex-col justify-between h-[415px]">
-              <div>
-                <h3 className="text-xl font-extrabold text-[#082330] mb-5">
-                  Contact Information
-                </h3>
+          {/* Column 2: Contact Information Card */}
+          <div className="lg:col-span-5">
+            <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full max-w-md lg:max-w-none lg:ml-auto">
+              <h3 className="text-xl font-extrabold text-[#082330] mb-4">
+                Contact Information
+              </h3>
 
-                <div className="space-y-4">
-                  {/* Phone */}
-                  <div className="flex items-start gap-3 flex-shrink-0">
-                    <Phone className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-extrabold text-xs text-[#082330]">Phone</p>
-                      <a href="tel:4034048969" className="text-xs text-slate-600 hover:text-[#0D6863] transition-colors mt-0.5 block">
-                        403-404-8969
-                      </a>
-                    </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+                {/* Phone */}
+                <div className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-extrabold text-xs text-[#082330]">Phone</p>
+                    <a href="tel:4034048969" className="text-xs text-slate-600 hover:text-[#0D6863] transition-colors mt-0.5 block">
+                      403-404-8969
+                    </a>
                   </div>
+                </div>
 
-                  {/* Email */}
-                  <div className="flex items-start gap-3 flex-shrink-0">
-                    <Mail className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-extrabold text-xs text-[#082330]">Email</p>
-                      <a href="mailto:info@cyafsf.com" className="text-xs text-slate-600 hover:text-[#0D6863] transition-colors mt-0.5 block">
-                        info@cyafsf.com
-                      </a>
-                    </div>
+                {/* Email */}
+                <div className="flex items-start gap-3">
+                  <Mail className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                  <div className="min-w-0">
+                    <p className="font-extrabold text-xs text-[#082330]">Email</p>
+                    <a href="mailto:info@cyafsf.com" className="text-xs text-slate-600 hover:text-[#0D6863] transition-colors mt-0.5 block break-all">
+                      info@cyafsf.com
+                    </a>
                   </div>
+                </div>
 
-                  {/* Address */}
-                  <div className="flex items-start gap-3 flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-extrabold text-xs text-[#082330]">Address</p>
-                      <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                        495 Water St.
-                        <br />
-                        St. John's, NL A1E 6B5
-                      </p>
-                    </div>
+                {/* Address */}
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-extrabold text-xs text-[#082330]">Address</p>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      495 Water St.
+                      <br />
+                      St. John&apos;s, NL A1E 6B5
+                    </p>
                   </div>
+                </div>
 
-                  {/* Office Hours */}
-                  <div className="flex items-start gap-3 flex-shrink-0">
-                    <Clock className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-extrabold text-xs text-[#082330]">Office Hours</p>
-                      <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                        Mon-Fri: 9:00 AM - 5:00 PM
-                      </p>
-                    </div>
+                {/* Office Hours */}
+                <div className="flex items-start gap-3">
+                  <Clock className="w-5 h-5 text-[#0D6863] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-extrabold text-xs text-[#082330]">Office Hours</p>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      Mon-Fri: 9:00 AM - 5:00 PM
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Divider & Socials */}
-              <div className="pt-4 border-t border-slate-200/80">
+              <div className="mt-5 pt-4 border-t border-slate-200/80">
                 <p className="font-extrabold text-xs text-[#082330] mb-2.5">
                   Follow Us
                 </p>
@@ -321,18 +317,6 @@ const ContactForm = () => {
                   </a>
                 </div>
               </div>
-
-            </div>
-          </div>
-
-          {/* Column 3: Building Image (3 cols) */}
-          <div className="lg:col-span-3">
-            <div className="rounded-3xl overflow-hidden shadow-md border border-slate-100 bg-slate-50 h-[415px] w-full">
-              <img 
-                src="/contact/cyafsf.webp" 
-                alt="CYAFSF Headquarters & Office Building" 
-                className="w-full h-full object-cover"
-              />
             </div>
           </div>
 
@@ -342,4 +326,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default ContactForm;
