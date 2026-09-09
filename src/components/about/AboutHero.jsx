@@ -34,7 +34,7 @@ export default function AboutHero() {
         <img
           src="/about/01-about-hero.webp"
           alt="CYAFSF young people and families walking together"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-[center_85%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b2530] from-0% via-[#0b2530]/80 via-22% to-transparent to-45%" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b2530] via-[#0b2530]/90 to-[#0b2530]/50 lg:hidden" />
