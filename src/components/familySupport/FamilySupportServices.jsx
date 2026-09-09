@@ -152,7 +152,7 @@ export default function FamilySupportServices() {
               </ul>
 
               <Link
-                to="/programs"
+                to="/our-programs"
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-coral hover:bg-coral-dark text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 text-sm md:text-base"
               >
                 Learn More About Our Programs

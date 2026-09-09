@@ -91,7 +91,7 @@ export default function HomeHero() {
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link 
-                to="/programs" 
+                to="/our-programs" 
                 className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-white/40 text-white font-semibold rounded-lg hover:bg-white/10 transition-all"
               >
                 Explore Programs 

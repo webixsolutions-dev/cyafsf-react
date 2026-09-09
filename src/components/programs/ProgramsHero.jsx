@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-export default function ProgramsHero({ onExplorePrograms }) {
+export default function ProgramsHero() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -65,20 +65,11 @@ export default function ProgramsHero({ onExplorePrograms }) {
 
           <motion.p
             variants={itemVariants}
-            className="text-[#DCE7EA] text-base md:text-lg leading-relaxed mb-8 max-w-xl"
+            className="text-[#DCE7EA] text-base md:text-lg leading-relaxed max-w-xl"
           >
             Our mission is to provide programs and resources that strengthen mental wellness,
             encourage resilience, and help youth and families navigate life&apos;s challenges.
           </motion.p>
-
-          <motion.div variants={itemVariants}>
-            <button
-              onClick={onExplorePrograms}
-              className="px-7 py-3 bg-coral hover:bg-coral-dark text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer text-sm md:text-base"
-            >
-              Explore Programs
-            </button>
-          </motion.div>
         </motion.div>
       </div>
     </section>

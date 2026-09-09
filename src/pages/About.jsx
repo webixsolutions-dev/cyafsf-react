@@ -9,7 +9,6 @@ import AboutStory from '../components/about/AboutStory.jsx';
 import AboutLeadership from '../components/about/AboutLeaderShip.jsx';
 import AboutServiceArea from '../components/about/AboutServiceArea.jsx';
 import AboutGovernance from '../components/about/AboutGovernance.jsx'
-import AboutCTA from '../components/about/AboutCTA.jsx';
 
 export default function About() {
   const { t } = useLanguage();
@@ -18,16 +17,9 @@ export default function About() {
     document.title = t('aboutHeroTitle') + ' | CYAFSF';
   }, [t]);
 
-  const scrollToMission = () => {
-    const element = document.getElementById('mission');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <>
-      <AboutHero onScrollToMission={scrollToMission} />
+      <AboutHero />
       <div id="mission">
         <AboutMission />
       </div>
@@ -36,7 +28,6 @@ export default function About() {
       <AboutLeadership />
       <AboutServiceArea />
       <AboutGovernance />
-      <AboutCTA />
     </>
   );
 }

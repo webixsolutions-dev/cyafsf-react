@@ -23,7 +23,7 @@ export default function FeaturedPrograms() {
             <p className="eyebrow">Featured programs</p>
             <h2 className="text-2xl md:text-3xl">Three ways we're showing up this season</h2>
           </div>
-          <Button to="/programs" variant="secondary">View all programs</Button>
+          <Button to="/our-programs" variant="secondary">View all programs</Button>
         </div>
 
         {status === 'loading' && <p>Loading programs&hellip;</p>}

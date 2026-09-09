@@ -14,23 +14,25 @@ const ResourcesHero = ({ onQuickSelect }) => {
   ];
 
   return (
-    <section className="relative bg-[#0a353d] text-white overflow-hidden py-10 lg:py-14 min-h-[380px] md:min-h-[420px] flex items-center">
+    <section className="relative bg-[#0a353d] text-white overflow-hidden py-8 lg:py-10 min-h-[300px] md:min-h-[320px] lg:min-h-[340px] flex items-center">
       
-      {/* Right Side Image - Placed strictly on the right half/corner with NO overlay on the image */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
+      {/* Solid bluish background covering the left 30% of the section on desktop */}
+      <div className="absolute inset-y-0 left-0 w-full lg:w-[30%] bg-[#0a353d] z-0 hidden lg:block" />
+
+      {/* Image panel takes the remaining 70% so the full photo width stays in frame */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
         <img
           src="/heroresource.webp"
           alt="Family using tablet together"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-[center_10%]"
         />
-        {/* Soft edge seam transition at the left border of image only */}
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0a353d] to-transparent hidden lg:block" />
+        {/* Bluish tint eases off towards the right so the family stays clear */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a353d]/30 to-[#0a353d]/20" />
+        {/* Blend confined to the empty room area on the left, clear of the man */}
+        <div className="absolute inset-y-0 left-0 w-[30%] bg-gradient-to-r from-[#0a353d] via-[#0a353d]/80 to-transparent hidden lg:block" />
         {/* Mobile Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a353d] via-[#0a353d]/70 to-transparent lg:hidden" />
       </div>
-
-      {/* Solid bluish background covering left half till center on desktop */}
-      <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 bg-[#0a353d] z-0 hidden lg:block" />
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">

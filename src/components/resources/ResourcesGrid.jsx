@@ -99,7 +99,7 @@ const ResourcesGrid = ({ filteredResources = [] }) => {
                             to="/contact"
                             className="inline-flex items-center gap-1 text-[#0d9488] font-bold text-[11px] sm:text-xs hover:text-[#0f766e] transition-colors"
                           >
-                            <span>Access Resource</span>
+                            <span>coming soon</span>
                             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                           </Link>
                         </div>
