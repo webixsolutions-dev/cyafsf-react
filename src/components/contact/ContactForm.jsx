@@ -278,7 +278,7 @@ const ContactForm = () => {
                   <div>
                     <p className="font-extrabold text-xs text-[#082330]">Address</p>
                     <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                      495 Water St.
+                      EastBid, 495 Water St #303
                       <br />
                       St. John&apos;s, NL A1E 6B5
                     </p>
@@ -313,6 +313,23 @@ const ContactForm = () => {
                     <FaInstagram />
                   </a>
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-8 bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full shadow-sm">
+              <p className="font-extrabold text-xs text-[#082330] mb-2.5">
+                Our Location
+              </p>
+              <div className="w-full overflow-hidden rounded-2xl border border-[#F2E5D5] h-[300px] md:h-[420px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d-52.7134639!3d47.5545453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0ca34d822d533d%3A0x5cf5e0901a7c9cb4!2sEastBid!5e0!3m2!1sen!2sca"
+                  className="w-full h-full"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="EastBid Office Location Map"
+                />
               </div>
             </div>
           </div>
