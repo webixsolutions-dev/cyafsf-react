@@ -84,7 +84,7 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Column 1: Send us a message Form */}
-          <div className="lg:col-span-7 self-start">
+          <div className="lg:col-span-7 self-start order-1">
             <div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#082330] tracking-tight">
                 Send us a message
@@ -240,7 +240,7 @@ const ContactForm = () => {
           </div>
 
           {/* Column 2: Contact Information */}
-          <div className="lg:col-span-5 self-start">
+          <div className="lg:col-span-5 self-start order-3 lg:order-2">
             <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full">
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#082330] tracking-tight">
                 Contact Information
@@ -315,12 +315,15 @@ const ContactForm = () => {
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="mt-8 bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full shadow-sm">
+          {/* Full-width map — below form + contact row */}
+          <div className="lg:col-span-12 mt-10 md:mt-12 order-2 lg:order-3">
+            <div className="bg-[#FAF6EE] border border-[#F2E5D5] rounded-3xl p-5 md:p-6 w-full shadow-sm">
               <p className="font-extrabold text-xs text-[#082330] mb-2.5">
                 Our Location
               </p>
-              <div className="w-full overflow-hidden rounded-2xl border border-[#F2E5D5] h-[300px] md:h-[420px]">
+              <div className="w-full overflow-hidden rounded-2xl border border-[#F2E5D5] h-[300px] md:h-[450px]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d-52.7134639!3d47.5545453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0ca34d822d533d%3A0x5cf5e0901a7c9cb4!2sEastBid!5e0!3m2!1sen!2sca"
                   className="w-full h-full"
